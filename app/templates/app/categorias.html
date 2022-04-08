@@ -1,0 +1,14 @@
+	
+{% extends "app/menu_decano.html" %}
+{% load static %}
+{% block titulo %}Pagina de peliculas{% endblock %}
+{% block contenido %}
+<div class="contenido3">
+    <br><br>
+    <img src="{% static 'app/image/votaciones.png' %}" alt="logo" width="100">
+
+    <a href="/Proyecto Final nube/Consultar_votacionsemestre.html"><button id="Cr"><h2>Votación por semestre</h1></button></a>
+    <a href="/Proyecto Final nube/Consulta_votaciónfacultad.html"><button id="Cr"><h2>Votación por facultad</h1></button></a>
+    <a href="/Proyecto Final nube/Listade_votaciones.html"><button id="Cr"><h2>Lista de votaciones</h1></button></a>
+</div>
+{% endblock %}
