@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body {
+    background-image: url(https://www.eltiempo.com/files/image_640_428/uploads/2020/06/12/5ee3f580ab4e1.jpeg);
+    backdrop-filter: blur(2px);
+    background-size: 1300px 600px;  
+}
+form {
+    color: white;
+    position: relative;
+    left: 450px; top: 140px;
+    background: #949494a2;
+    padding: 50px;
+    width: 30%;
+    border: 1px solid rgba(169, 169, 169, 0.644);
+    border-radius: 30px;
+    -webkit-box-shadow: 1px 0px 15px 5px #000000; 
+box-shadow: 1px 0px 15px 5px #000000;
+  }
+  form > fieldset {
+    border: 0;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+input {
+    background: #dfdfdfa2;
+    border-radius: 30px;
+}
+#ing {
+    background: #dfdfdfa2;
+    border-radius: 20px;
+}
+#logousta {
+    position: relative;
+    left: 600px; top: 70px;
+}
+ul {
+    list-style-type: none;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #0433aa79;
+    height: 50px;
+  }
+  
+  ul li {
+    display: inline;
+    margin-right: 15px;
+    position: relative;
+    left: 500px; top: 10px;
+  }
+  
+  ul a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  ul a:hover {
+    background: #faffb4;
+    color: #000;
+  }
+  #ing{
+    background: #06a757;
+  }

@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  
+  ul li {
+    display: inline;
+    margin-right: 15px;
+    position: relative;
+    left: 500px; top: 10px;
+  }
+  
+  ul a {
+    text-decoration: none;
+    background: #0432AA;
+    color: #fff;
+  }
+  
+  ul a:hover {
+    background: #faffb4;
+    color: #000;
+  }
+  .contenedor {
+    background: rgb(88, 75, 75);
+    width: auto;
+    height: auto  ;
+    display: grid;
+    grid-template: 50px 550px 50px / 0.2fr 0.2fr 0.2fr;
+    /* gap: 5px; */
+  }
+
+      .header {
+          grid-row: 1 / 2;
+          grid-column: 1 / 5;
+        list-style-type: none;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: #0432AA;
+        height: 60px;
+        }
+
+      .contenido {
+        background: #ffffff;
+        grid-row: 2 /3;
+        grid-column: 1 /2;
+        /* Horizontal */
+        justify-items: center;
+        /* Vertical */
+        align-items: center;
+        padding: 50px;
+      
+      }
+      .contenido2 {
+        background: #ffffff;
+        grid-row: 2 /3;
+        grid-column: 2 /3;
+        /* Horizontal */
+        justify-items: center;
+        /* Vertical */
+        align-items: center;
+        padding: 50px;
+      
+      }
+      .contenido3 {
+        background: #ffffff;
+        grid-row: 2 /3;
+        grid-column: 3 /4;
+        /* Horizontal */
+        justify-items: center;
+        /* Vertical */
+        align-items: center;
+        padding: 50px;;
+      
+      }
+      .contenido4 {
+        background: #ffffff;
+        grid-row: 2 /3;
+        grid-column: 4 /5;
+        /* Horizontal */
+        justify-items: center;
+        /* Vertical */
+        align-items: center;
+        padding-top: 50px;
+      
+      }
+            
+      .footer {
+        background: #0432AA;
+        grid-row: 3 / 4;
+        grid-column: 1 / 5;
+      }
+
+      select ,#cr{
+        /* position: relative;
+        top: 200px; */
+        padding: 20px 50px;
+        border: 2px solid rgb(0, 0, 0);
+        color: white;
+        background: #0432AA;
+     border-radius: 10px;
+    text-align: center;
+    width: 300px;
+      }
+      #cr:hover {
+        background: #faffb4;
+        color: #000;
+      }
+      select:hover {
+        background: #faffb4;
+        color: #000;
+      }
+      #ima1{
+        position: relative;
+        left: 95px; 
+      }
+      #pp{
+        color: white;
+      }

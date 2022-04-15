@@ -28,4 +28,5 @@ def categoria(request, id):
     return HttpResponse(f'Esta es la categoria {id}')
 
 def menu_decano(request):
-    return render(request, 'app/menu_decano.html') #para dibujar la pagina
+    return render(request, 'app/menu_decano.html')
+
