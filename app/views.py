@@ -111,8 +111,8 @@ def resultadosfinales_estudiantes(request):
 def Ustedse_postulo(request):
     return render(request, 'app/Ustedse-postulo.html')
 
-def vot(request):
-    return render(request, 'app/vot.html')
+def Vot(request):
+    return render(request, 'app/Vot.html')
 
 def votacion_creada(request):
     return render(request, 'app/votación-creada.html')
