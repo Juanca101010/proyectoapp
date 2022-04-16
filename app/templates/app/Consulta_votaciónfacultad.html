@@ -1,8 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Consutlar Votaciones Semestre</title>
-    <link rel="stylesheet" href="./css/estilo_consultavotacion.css">
-</head>
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/estilo_consultavotacion.css' %}" rel="stylesheet">
 <body>
     
       <div class="contenedor" >

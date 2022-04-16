@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Cambiar Estado</title>
-    <link rel="stylesheet" href="./css/voto_realizado.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/voto_realizado.css' %}" rel="stylesheet">
 </head>
 <body>
     

@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Hacer Votación Facultad</title>
-    <link rel="stylesheet" href="./css/estilo_hacervotacion.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/estilo_hacervotacion.css' %}" rel="stylesheet">
 </head>
 <body>
    

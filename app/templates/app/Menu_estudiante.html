@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Pagina Principal Estudiante</title>
-    <link rel="stylesheet" href="./css/Estilo_menudecano.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/estiloMenuDecano.css' %}" rel="stylesheet">
 </head>
 <body>
     

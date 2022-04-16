@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Postulación</title>
-    <link rel="stylesheet" href="./css/estilo_postularse.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/estilo_postularse.css' %}" rel="stylesheet">
 </head>
 <body>
     

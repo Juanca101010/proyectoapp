@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Resultados finales de Votación</title>
-    <link rel="stylesheet" href="./css/Resultado_final.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/Resultado_final.css' %}" rel="stylesheet">
 </head>
 <body>
     

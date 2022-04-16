@@ -1,8 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-
-    <title>Ingresar</title>
-    <link rel="stylesheet" href="./css/Estilo_ingresar.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/Estilo_ingresar.css' %}" rel="stylesheet">
 </head>
 <body>
     <ul >

@@ -9,41 +9,41 @@
 <body>  
     
       <div class="contenedor" >
-
+        {% block contenido %}
         <div class="header">
           <ul id="menu">
-            <li ><a href="/Proyecto Final nube/menu_decano.html">Inicio</a></li>
-            <li ><a href="/Proyecto Final nube/Vot.html">Votaciones</a></li>
-            <li><a href="/Proyecto Final nube/est.html">Estudiantes</a></li>
-            <li><a href="/Proyecto Final nube/consult.html">Consultas</a></li> 
-            <li><a href="/Proyecto Final nube/Ingresar.html" >Salir</a></li>
+            <li ><a href="./menu_decano.html">Inicio</a></li>
+            <li ><a href="./Vot.html">Votaciones</a></li>
+            <li><a href="./est.html">Estudiantes</a></li>
+            <li><a href="./consult.html">Consultas</a></li> 
+            <li><a href="./Ingresar.html" >Salir</a></li>
         </ul>
         </div>
-        {% block contenido %}
+        {% endblock %}
             <div class="contenido">
              
                 <br><br>
                 <img src="{% static 'app/image/consultar.png' %}" alt="logo" width="100">
 
-                <a href="/Proyecto Final nube/crear_votacion.html"><button id="Cr"><h2>Crear Votación</h1></button></a>
-                <a href="/Proyecto Final nube/cambiar_estado.html"><button id="Cr"><h2>Cambiar estado</h1></button></a>
+                <a href="./crear_votacion.html"><button id="Cr"><h2>Crear Votación</h1></button></a>
+                <a href="./cambiar_estado.html"><button id="Cr"><h2>Cambiar estado</h1></button></a>
                   
             </div>
               <div class="contenido2">
                 <br><br>
                 <img src="{% static 'app/image/estudiante.jpg' %}" alt="logo" width="100">
 
-                <a href="/Proyecto Final nube/Crear_estudiante.html"><button id="Cr"><h2>Crear Estudiante</h1></button></a>
-                <a href="/Proyecto Final nube/Lista_estudiantes.html"><button id="Cr"><h2>Ver lista</h1></button></a>
-                <a href="/Proyecto Final nube/postularestudiante.html"><button id="Cr"><h2>Postular</h1></button></a>
+                <a href="./Crear_estudiante.html"><button id="Cr"><h2>Crear Estudiante</h1></button></a>
+                <a href="./Lista_estudiantes.html"><button id="Cr"><h2>Ver lista</h1></button></a>
+                <a href="./postularestudiante.html"><button id="Cr"><h2>Postular</h1></button></a>
               </div>
               <div class="contenido3">
                 <br><br>
                 <img src="{% static 'app/image/votaciones.png' %}" alt="logo" width="100">
 
-                <a href="/Proyecto Final nube/Consultar_votacionsemestre.html"><button id="Cr"><h2>Votación por semestre</h1></button></a>
-                <a href="/Proyecto Final nube/Consulta_votaciónfacultad.html"><button id="Cr"><h2>Votación por facultad</h1></button></a>
-                <a href="/Proyecto Final nube/Listade_votaciones.html"><button id="Cr"><h2>Lista de votaciones</h1></button></a>
+                <a href="./Consultar_votacionsemestre.html"><button id="Cr"><h2>Votación por semestre</h1></button></a>
+                <a href="./Consulta_votaciónfacultad.html"><button id="Cr"><h2>Votación por facultad</h1></button></a>
+                <a href="./Listade_votaciones.html"><button id="Cr"><h2>Lista de votaciones</h1></button></a>
             </div>
             <div class="contenido4">
               <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">
@@ -51,7 +51,6 @@
             </div>
               <div class="footer">
               </div>
-              {% endblock %}
             </div>
             
 </body>

@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Cambiar Estado</title>
-    <link rel="stylesheet" href="./css/estilo_cambiarestado.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/estilo_cambiarestado' %}" rel="stylesheet">
 </head>
 <body>
     
@@ -9,11 +12,11 @@
 
         <div class="header">
           <ul id="menu">
-            <li ><a href="/Proyecto Final nube/menu_decano.html">Inicio</a></li>
-            <li ><a href="/Proyecto Final nube/Vot.html">Votaciones</a></li>
-            <li><a href="/Proyecto Final nube/est.html">Estudiantes</a></li>
-            <li><a href="/Proyecto Final nube/consult.html">Consultas</a></li> 
-            <li><a href="/Proyecto Final nube/Ingresar.html" >Salir</a></li>
+            <li ><a href="./menu_decano.html">Inicio</a></li>
+            <li ><a href="./Vot.html">Votaciones</a></li>
+            <li><a href="./est.html">Estudiantes</a></li>
+            <li><a href="./consult.html">Consultas</a></li> 
+            <li><a href="./Ingresar.html" >Salir</a></li>
         </ul>
         </div>
           

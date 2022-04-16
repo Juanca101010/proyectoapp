@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Postular estudiante a facultad</title>
-    <link rel="stylesheet" href="./css/estilo_posestudiante.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/estilo_posestudiante.css' %}" rel="stylesheet">
 </head>
 <body>
     

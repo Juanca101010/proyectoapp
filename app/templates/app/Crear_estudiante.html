@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Crear Estudiante</title>
-    <link rel="stylesheet" href="./css/Estilo_crearestudiante.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/Estilo_crearestudiante.css' %}" rel="stylesheet">
 </head>
 <body>
   <div class="header">

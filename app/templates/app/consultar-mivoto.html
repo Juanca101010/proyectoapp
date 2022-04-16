@@ -1,7 +1,10 @@
+{% load static %}
+	
+
 <html lang="en">
 <head>
-    <title>Consultar mi voto</title>
-    <link rel="stylesheet" href="./css/estilo-consultar-mivoto.css">
+    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+    <link href="{% static 'app/css/estilo-consultar-mivoto.css' %}" rel="stylesheet">
 </head>
 <body>
     
