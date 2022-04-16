@@ -25,8 +25,8 @@
                 <br><br>
                 <img src="{% static 'app/image/consultar.png' %}" alt="logo" width="100">
 
-                <a href="./crear_votacion.html"><button id="Cr"><h2>Crear Votación</h1></button></a>
-                <a href="./cambiar_estado.html"><button id="Cr"><h2>Cambiar estado</h1></button></a>
+                <a href="{% url 'app:crear_votacion' %}"><button id="Cr"><h2>Crear Votación</h1></button></a>
+                <a href="{% url 'app:cambiar_estado' %}"><button id="Cr"><h2>Cambiar estado</h1></button></a>
                   
             </div>
               <div class="contenido2">
