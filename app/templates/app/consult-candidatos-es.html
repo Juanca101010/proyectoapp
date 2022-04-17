@@ -13,7 +13,6 @@
         <div class="header">
           <ul id="menu">
             <li ><a href="{% url 'app:menu_estudiante' %}">Inicio</a></li>
-            <li ><a href="{% url 'app:vot' %}">votar</a></li>
             <li><a href="{% url 'app:postularse' %}">Postularse</a></li>
             <li><a href="{% url 'app:consult-estudiante' %}">Consultas</a></li> 
             <li><a href="{% url 'app:ingresar' %}" id="profiles">Salir</a></li>
@@ -38,7 +37,7 @@
                           </tbody>
                         </table>
                         <br>
-                        <a href="{% url 'app:consultar_votacionsemestre' %}"class="cr">Atras</a>
+                        <a href="{% url 'app:resultados_finales' %}"class="cr">Atras</a>
           </div>
               <div class="contenido2">
                 <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>
