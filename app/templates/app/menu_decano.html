@@ -13,7 +13,7 @@
         <div class="header">
           <ul id="menu">
             <li ><a href="{% url 'app:menu_decano' %}">Inicio</a></li>
-            <li ><a href="{% url 'app:Vot' %}">Votaciones</a></li>
+            <li ><a href="{% url 'app:vot' %}">Votaciones</a></li>
             <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
             <li><a href="{% url 'app:consult' %}">Consultas</a></li> 
             <li><a href="{% url 'app:ingresar' %}" >Salir</a></li>
@@ -33,17 +33,17 @@
                 <br><br>
                 <img src="{% static 'app/image/estudiante.jpg' %}" alt="logo" width="100">
 
-                <a href="./Crear_estudiante.html"><button id="Cr"><h2>Crear Estudiante</h1></button></a>
-                <a href="./Lista_estudiantes.html"><button id="Cr"><h2>Ver lista</h1></button></a>
-                <a href="./postularestudiante.html"><button id="Cr"><h2>Postular</h1></button></a>
+                <a href="{% url 'app:crear_estudiante' %}"><button id="Cr"><h2>Crear Estudiante</h1></button></a>
+                <a href="{% url 'app:lista_estudiantes' %}"><button id="Cr"><h2>Ver lista</h1></button></a>
+                <a href="{% url 'app:postularestudiante' %}"><button id="Cr"><h2>Postular</h1></button></a>
               </div>
               <div class="contenido3">
                 <br><br>
                 <img src="{% static 'app/image/votaciones.png' %}" alt="logo" width="100">
 
-                <a href="./Consultar_votacionsemestre.html"><button id="Cr"><h2>Votación por semestre</h1></button></a>
-                <a href="./Consulta_votaciónfacultad.html"><button id="Cr"><h2>Votación por facultad</h1></button></a>
-                <a href="./Listade_votaciones.html"><button id="Cr"><h2>Lista de votaciones</h1></button></a>
+                <a href="{% url 'app:consultar_votacionsemestre' %}"><button id="Cr"><h2>Votación por semestre</h1></button></a>
+                <a href="{% url 'app:consulta_votacionfacultad' %}"><button id="Cr"><h2>Votación por facultad</h1></button></a>
+                <a href="{% url 'app:listade-votaciones' %}"><button id="Cr"><h2>Lista de votaciones</h1></button></a>
             </div>
             <div class="contenido4">
               <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">

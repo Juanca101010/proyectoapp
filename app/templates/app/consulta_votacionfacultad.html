@@ -11,11 +11,11 @@
 
         <div class="header">
           <ul id="menu">
-            <li ><a href="/Proyecto Final nube/menu_decano.html">Inicio</a></li>
-            <li ><a href="/Proyecto Final nube/Vot.html">Votaciones</a></li>
-            <li><a href="/Proyecto Final nube/est.html">Estudiantes</a></li>
-            <li><a href="/Proyecto Final nube/consult.html">Consultas</a></li> 
-            <li><a href="/Proyecto Final nube/Ingresar.html" >Salir</a></li>
+            <li ><a href="{% url 'app:menu_decano' %}">Inicio</a></li>
+            <li ><a href="{% url 'app:vot' %}">Votaciones</a></li>
+            <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
+            <li><a href="{% url 'app:consult' %}">Consultas</a></li> 
+            <li><a href="{% url 'app:ingresar' %}" >Salir</a></li>
         </ul>
         </div>
           
@@ -63,7 +63,7 @@
                                   
                               </td>  
                               <td for="estado" id="cerrada">
-                                <a href="/Proyecto Final nube/candidatos-ganadores2.html" class="cr">Consultar</a>
+                                <a href="{% url 'app:candidatos-ganadores2' %}"class="cr">Consultar</a>
                               </td>  
                             </tr>      
                           </tbody>

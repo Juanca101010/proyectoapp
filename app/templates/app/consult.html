@@ -12,19 +12,19 @@
 
         <div class="header">
           <ul id="menu">
-            <li ><a href="/Proyecto Final nube/menu_decano.html">Inicio</a></li>
-            <li ><a href="/Proyecto Final nube/Vot.html">Votaciones</a></li>
-            <li><a href="/Proyecto Final nube/est.html">Estudiantes</a></li>
-            <li><a href="/Proyecto Final nube/consult.html">Consultas</a></li> 
-            <li><a href="/Proyecto Final nube/Ingresar.html" >Salir</a></li>
+            <li ><a href="{% url 'app:menu_decano' %}">Inicio</a></li>
+            <li ><a href="{% url 'app:vot' %}">Votaciones</a></li>
+            <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
+            <li><a href="{% url 'app:consult' %}">Consultas</a></li> 
+            <li><a href="{% url 'app:ingresar' %}" >Salir</a></li>
         </ul>
         </div>
               <div class="contenido">
                 <br><br>
-                <img src="{% static 'app/consultar.png' %}" alt="logo" width="100">
-                <a href="./Consultar_votacionsemestre.html"><button id="Cr"><h2>Votación por semestre</h1></button></a>
-                <a href="./Consulta_votaciónfacultad.html"><button id="Cr"><h2>Votación por facultad</h1></button></a>
-                <a href="/Proyecto Final nube/Listade_votaciones.html"><button id="Cr"><h2>Lista de votaciones</h1></button></a>
+                <img src="{% static 'app/image/consultar.png' %}" alt="logo" width="100">
+                <a href="{% url 'app:consultar_votacionsemestre' %}"><button id="Cr"><h2>Votación por semestre</h1></button></a>
+                <a href="{% url 'app:consulta_votacionfacultad' %}"><button id="Cr"><h2>Votación por facultad</h1></button></a>
+                <a href="{% url 'app:listade-votaciones' %}"><button id="Cr"><h2>Lista de votaciones</h1></button></a>
             </div>
             <div class="contenido2">
               <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">

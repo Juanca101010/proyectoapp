@@ -11,13 +11,13 @@
       <div class="contenedor" >
         <div class="header">
           <ul id="menu">
-            <li ><a href="/Proyecto Final nube/Menu_estudiante.html">Inicio</a></li>
-            <li ><a href="/Proyecto Final nube/Vot.html">votar</a></li>
-            <li><a href="/Proyecto Final nube/postularse.html">Postularse</a></li>
-            <li><a href="./Consult-estudiante.html">Consultas</a></li> 
-            <li><a href="/Proyecto Final nube/Ingresar.html" id="profiles">Salir</a></li>
+            <li ><a href="{% url 'app:menu_estudiante' %}">Inicio</a></li>
+            <li ><a href="{% url 'app:vot' %}">votar</a></li>
+            <li><a href="{% url 'app:postularse' %}">Postularse</a></li>
+            <li><a href="{% url 'app:consult-estudiante' %}">Consultas</a></li> 
+            <li><a href="{% url 'app:ingresar' %}" id="profiles">Salir</a></li>
             </ul>
-          </div>    
+        </div>
               <div class="contenido">
                 <div class="f2">
                 <h2>Hacer una votación</h2>
@@ -57,7 +57,7 @@
             tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
         </option>
         </select>
-        <a href="/Proyecto Final nube/voto_realizado.html"><button id="Cr"><h2>Votar</h2></button></a>
+        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
       </form>
       <br>
       <form class="f1">
@@ -75,7 +75,7 @@
             tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
         </option>
         </select>
-        <a href="/Proyecto Final nube/voto_realizado.html"><button id="Cr"><h2>Votar</h2></button></a>
+        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
       </form>
       <br>
       <form class="f1">
@@ -93,7 +93,7 @@
             tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
         </option>
         </select>
-        <a href="/Proyecto Final nube/voto_realizado.html"><button id="Cr"><h2>Votar</h2></button></a>
+        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
       </form> 
     </div>
               </div>

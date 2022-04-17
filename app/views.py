@@ -76,7 +76,7 @@ def hacer_votacion(request):
     return render(request, 'app/hacer_votacion.html')
 
 def hacervotacion_facultad(request):
-    return render(request, 'app/Hacervotación_facultad.html')
+    return render(request, 'app/hacervotación_facultad.html')
 
 def ingresar(request):
     return render(request, 'app/ingresar.html')
@@ -85,16 +85,16 @@ def lista_estudiantes(request):
     return render(request, 'app/lista_estudiantes.html')
 
 def listade_votaciones_est(request):
-    return render(request, 'app/Listade-votaciones.html')
+    return render(request, 'app/listade-votaciones-est.html')
 
 def listade_votaciones(request):
-    return render(request, 'app/Listade-votaciones-est.html')
+    return render(request, 'app/listade-votaciones.html')
 
 def listadecandidatos_vot(request):
     return render(request, 'app/listadecandidatos-vot.html')
 
-def Menu_estudiante(request):
-    return render(request, 'app/Menu_estudiante.html')
+def menu_estudiante(request):
+    return render(request, 'app/menu_estudiante.html')
 
 def postularestudiante(request):
     return render(request, 'app/postularestudiante.html')
@@ -102,20 +102,20 @@ def postularestudiante(request):
 def postularse(request):
     return render(request, 'app/postularse.html')
 
-def Resultados_finales(request):
-    return render(request, 'app/Resultados_finales.html')
+def resultados_finales(request):
+    return render(request, 'app/resultados_finales.html')
 
 def resultadosfinales_estudiantes(request):
     return render(request, 'app/resultadosfinales-estudiantes.html')
 
-def Ustedse_postulo(request):
-    return render(request, 'app/Ustedse-postulo.html')
+def ustedse_postulo(request):
+    return render(request, 'app/ustedse-postulo.html')
 
-def Vot(request):
-    return render(request, 'app/Vot.html')
+def vot(request):
+    return render(request, 'app/vot.html')
 
 def votacion_creada(request):
-    return render(request, 'app/votación-creada.html')
+    return render(request, 'app/votacion-creada.html')
 
 def voto_realizado(request):
     return render(request, 'app/voto_realizado.html')
