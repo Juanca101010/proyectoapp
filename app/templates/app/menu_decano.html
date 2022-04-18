@@ -16,7 +16,7 @@
             <li ><a href="{% url 'app:vot' %}">Votaciones</a></li>
             <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
             <li><a href="{% url 'app:consult' %}">Consultas</a></li> 
-            <li><a href="{% url 'app:ingresar' %}" >Salir</a></li>
+            <li><a href="{% url 'app:view_logout' %}">Salir</a></li>    
         </ul>
         </div>
         {% endblock %}
@@ -33,7 +33,7 @@
                 <br><br>
                 <img src="{% static 'app/image/estudiante.jpg' %}" alt="logo" width="100">
 
-                <a href="{% url 'app:crear_estudiante' %}"><button id="Cr"><h2>Crear Estudiante</h1></button></a>
+                <a href="{% url 'app:crear-estudiante' %}"><button id="Cr"><h2>Crear Estudiante</h1></button></a>
                 <a href="{% url 'app:lista_estudiantes' %}"><button id="Cr"><h2>Ver lista</h1></button></a>
                 <a href="{% url 'app:postularestudiante' %}"><button id="Cr"><h2>Postular</h1></button></a>
               </div>

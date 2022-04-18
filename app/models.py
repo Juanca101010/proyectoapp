@@ -8,13 +8,7 @@ class Categoria(models.Model):
         app_label = 'app'
 
 
-class User(models.Model):
 
-    first_name = models.CharField(max_length=45, null=False)
-    last_name = models.CharField(max_length=45, null=False)
-    email = models.CharField(max_length=45, null=False)
-    password = models.CharField(max_length=45, null=False)
-    is_superuser = models.BooleanField(null=True)
 
 class Facultad(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -85,6 +79,17 @@ class Decano(models.Model):
       null=True
     )
 
+class User(models.Model):
+    first_name = models.CharField(max_length=45, null=False)
+    last_name = models.CharField(max_length=45, null=False)
+    email = models.CharField(max_length=45, null=False)
+    password = models.CharField(max_length=45, null=False)
+    is_superuser = models.BooleanField(null=True)
+    # id = models.ForeignKey(
+    #   Estudiante,
+    #   on_delete=models.PROTECT,
+    #   primary_key=True
+    # )
 
 
 class voto(models.Model):

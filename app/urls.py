@@ -6,7 +6,6 @@ urlpatterns = [
     path('index/', views.index, name='index'), 
     path('categorias', views.categorias, name='categorias'), 
     path('categorias/<int:id>/', views.categoria, name='categoria'), 
-    path('peliculas/', views.peliculas, name='peliculas'), 
     path('menu_decano/', views.menu_decano, name='menu_decano'), 
     path('cambiar_estado/', views.cambiar_estado, name='cambiar_estado'), 
     path('candidatos-ganadores/', views.candidatos_ganadores, name='candidatos-ganadores'), 
@@ -18,7 +17,8 @@ urlpatterns = [
     path('consulta_votacionfacultad/', views.consulta_votacionfacultad, name='consulta_votacionfacultad'), 
     path('consultar_votacionsemestre/', views.consultar_votacionsemestre, name='consultar_votacionsemestre'), 
     path('consultar-mivoto/', views.consultar_mivoto, name='consultar-mivoto'), 
-    path('crear_estudiante/', views.crear_estudiante, name='crear_estudiante'), 
+    path('crear-estudiante/', views.crear_estudiante, name='crear-estudiante'), 
+    path('crear_estudiante2/', views.crear_estudiante2, name='crear_estudiante2'), 
     path('crear_votacion/', views.crear_votacion, name='crear_votacion'), 
     path('est/', views.est, name='est'), 
     path('hacer_votacion/', views.hacer_votacion, name='hacer_votacion'), 
@@ -37,4 +37,13 @@ urlpatterns = [
     path('vot/', views.vot, name='vot'), 
     path('votacion-creada/', views.votacion_creada, name='votacion-creada'), 
     path('voto_realizado/', views.voto_realizado, name='voto_realizado'), 
+
+
+    #---------------------------------------------------------------------------------
+    path('ingresar/', views.form_login, name='form_login'), 
+    path('autenticar/', views.autenticar, name='autenticar'),   
+    path('logout/', views.view_logout, name='view_logout'), 
+
+    #///////////////////////////////////////////////////////////////
+    #crear estudiante
 ]

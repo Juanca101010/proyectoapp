@@ -21,35 +21,35 @@
                 <h2>Crear Estudiante</h2>
       <br>
    
-    <form id="formu">
-
-      <label for="apellidos" ><h2>Nombres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
-      <input type="text" />
+    <form action="{% url 'app:crear_estudiante2' %}" method="post" id="formu">
+      {% csrf_token %}
+      <label ><h2>Nombres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
+      <input name="nombre" id="nombre"type="text" />
       <br />  
       <br />
-      <label for="apellidos"><h2>Apellidos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
-      <input type="text"  />
+      <label ><h2>Apellidos&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
+      <input id="apellidos" name="apellidos" type="text"  />
       <br />
       <br />
-      <label for="apellidos"><h2>Facultad &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
-      <output type="text"  />
+      <label ><h2>Facultad &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
+      <output type="text" id="facultad" >
       <label for="">Ingenieria de Telecomunicaciones</label>
       <br />
       <br />
-      <label for="apellidos"><h2>Documento&nbsp;&nbsp;&nbsp;</h2> </label>
-      <input type="number" />
+      <label ><h2>Documento&nbsp;&nbsp;&nbsp;</h2> </label>
+      <input id="documento" name="documento" type="text" />
       <br />
       <br />
-      <label for="apellidos"><h2>Semestre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
-      <input type="text" />
+      <label id="semestre"><h2>Semestre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2></label>
+      <input id="semestre" name="semestre" type="text" />
       <br />
       <br />
-      <label for="apellidos"><h2>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>  </label>
-      <input type="email">
+      <label ><h2>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>  </label>
+      <input id="email" name="email" type="email">
       <br />
       <br />
       <br />
-      <button id="Cr"><h1>Crear</h1></button>
+      <button type="submit">Crear</button>
 
       
     </form>
