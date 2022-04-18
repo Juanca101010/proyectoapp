@@ -1,107 +1,154 @@
 from django.db import models
-
-class Categoria(models.Model):
-    nombre = models.CharField(max_length=100, null=False)
-    descripcion = models.TextField(null=True)
-
-    class Meta:
-        app_label = 'app'
-
-
-
+from django.contrib.auth.models import User
 
 class Facultad(models.Model):
-    id = models.IntegerField(primary_key=True)
-    nombre = models.CharField(max_length=45, null=True)
+    nombre= models.CharField(max_length=45, null=False)
 
-class EstadoVotacion(models.Model):
-    id = models.IntegerField(primary_key=True)
-    nombre = models.CharField(max_length=45, null=True)
-    codigo = models.CharField(max_length=45, null=True)
+    def _str_(self):
+        return "%s" % (self.nombre)
 
-class TipoVotacion(models.Model):
-    id = models.IntegerField(primary_key=True)
-    nombre = models.CharField(max_length=45, null=True)
-    codigo = models.CharField(max_length=45, null=True)
+    class Meta:
+        app_label= 'app'
 
+# tiene uno a uno con User
+# preguntar lo del null u primary key
+#en la tabla decano no deberia existir un id user???
 
-class Estudiante(models.Model):
-    id = models.IntegerField(primary_key=True)
-    idFacultad = models.ForeignKey(
-      Facultad, 
-      on_delete=models.PROTECT
+class Decano (models.Model):
+    facultad= models.ForeignKey(
+        Facultad,
+        related_name='decanos',
+        null=False,
+        on_delete=models.PROTECT
+    )
+    user = models.OneToOneField(
+        User,
+        related_name='decano',
+        null=True,
+        primary_key=False,
+        on_delete=models.PROTECT
     )
 
-    semestreActual = models.IntegerField(null=True)
+    def _str_(self):
+        return "%s" % (self.facultad)
 
+    class Meta:
+        app_label= 'app'
 
-class votacion(models.Model):
-    id = models.IntegerField(primary_key=True)
-    nombre = models.CharField(max_length=45, null=True)
+class Estudiante (models.Model):
+    semestreActual= models.IntegerField(null=False)
+    documento=models.IntegerField(null=False)
 
-    idTipo = models.ForeignKey(
-      TipoVotacion, 
-      on_delete=models.PROTECT
+    facultad= models.ForeignKey(
+        Facultad,
+        related_name='estudiantes',
+        null=False,
+        on_delete=models.PROTECT
+    )
+    user = models.OneToOneField(
+        User,
+        related_name='estudiante',
+        null=True,
+        primary_key=False,
+        on_delete=models.PROTECT
+    )
+    
+
+    def _str_(self):
+        return "%s %s" % (self.user, self.facultad)
+
+    class Meta:
+        app_label= 'app'
+
+# postulacion, Votacion, cerrada
+class EstadoVotacion (models.Model):
+    nombre= models.CharField(max_length=45, null=False)
+    codigo= models.CharField(max_length=45, null=False)
+
+    def _str_(self):
+        return "%s" % (self.nombre)
+
+    class Meta:
+        app_label= 'app'
+
+# semestre, facultad
+class TipoVotacion (models.Model):
+    nombre= models.CharField(max_length=45, null=False)
+    codigo= models.CharField(max_length=45, null=False)
+
+    def _str_(self):
+        return "%s" % (self.nombre)
+
+    class Meta:
+        app_label= 'app'
+
+class Votacion (models.Model):
+    nombre= models.CharField(max_length=45, null=False)
+    tipo= models.ForeignKey(
+        TipoVotacion,
+        related_name='tipos_votaciones',
+        on_delete=models.PROTECT
+    )
+    estado= models.ForeignKey(
+        EstadoVotacion,
+        related_name='estado_votaciones',
+        on_delete=models.PROTECT
+    )
+    facultad= models.ForeignKey(
+        Facultad,
+        related_name='facultad_votaciones',
+        null=False,
+        on_delete=models.PROTECT
     )
 
-    idEstado = models.ForeignKey(
-      EstadoVotacion, 
-      on_delete=models.PROTECT
+    fechaInicio=models.DateField(auto_now=False, auto_now_add=False, null=True)
+    fechaFinal=models.DateField(auto_now=False, auto_now_add=False,null=True)
+
+    def _str_(self):
+        return self.nombre
+
+    class Meta:
+        app_label= 'app'
+
+class Candidato (models.Model):
+    estudiante=models.ForeignKey(
+        Estudiante,
+        related_name='estudiante_candidatos',
+        null=True,
+        on_delete=models.PROTECT
     )
-
-    idFacultad = models.ForeignKey(
-      Facultad, 
-      on_delete=models.PROTECT
+    Votacion=models.ForeignKey(
+        Votacion,
+        related_name='votacion_candidatos',
+        null=True,
+        on_delete=models.PROTECT
     )
+    semestre= models.IntegerField(null=True)
+    propuesta=models.CharField(max_length=45, null=True)
 
-class Candidato(models.Model):
-    id = models.IntegerField(primary_key=True)
-    idEstudiante = models.ForeignKey(
-      Estudiante, 
-      on_delete=models.PROTECT,
-      null=True
+    def _str_(self):
+        return self.estudiante
+
+    class Meta:
+        app_label= 'app'
+
+class Voto (models.Model):
+    votante=models.ForeignKey(
+        Estudiante,
+        related_name='votantes',
+        null=False,
+        on_delete=models.PROTECT
     )
-
-    idVotacion = models.ForeignKey(
-      votacion, 
-      on_delete=models.PROTECT,
-      null=True
+    candidato=models.ForeignKey(
+        Candidato,
+        related_name='candidatos',
+        null=False,
+        on_delete=models.PROTECT
     )
-    semestre = models.IntegerField()
-    propuesta = models.CharField(max_length=45, null=False)
+    FechaHora=models.DateTimeField(null=True)
 
+    def _str_(self):
+        return self.candidato
 
-class Decano(models.Model):
-    id = models.IntegerField(primary_key=True)
-    idFacultad = models.ForeignKey(
-      Facultad, 
-      on_delete=models.PROTECT,
-      null=True
-    )
-
-class User(models.Model):
-    first_name = models.CharField(max_length=45, null=False)
-    last_name = models.CharField(max_length=45, null=False)
-    email = models.CharField(max_length=45, null=False)
-    password = models.CharField(max_length=45, null=False)
-    is_superuser = models.BooleanField(null=True)
-    # id = models.ForeignKey(
-    #   Estudiante,
-    #   on_delete=models.PROTECT,
-    #   primary_key=True
-    # )
-
-
-class voto(models.Model):
-    id = models.IntegerField(primary_key=True)
-    idVotante = models.ForeignKey(
-      Estudiante, 
-      on_delete=models.PROTECT
-    )
-
-    idCandidato = models.ForeignKey(
-      Candidato, 
-      on_delete=models.PROTECT
-    )
-
-    fechaHora = models.DateTimeField(auto_now=False,auto_now_add=False)
+    class Meta:
+        app_label= 'app'

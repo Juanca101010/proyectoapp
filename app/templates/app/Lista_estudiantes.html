@@ -34,35 +34,17 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {% if lista_estudiantes %}
+                            {%for lista  in lista_estudiantes%}
                             <tr class="fila"> 
-                              <td>xxxxxx-xxxxxxxxxxxx</td>
-                              <td>xxxxx-xxxxx-xxxx</td>
-                              <td>xxxx-xxxxx@gmial</td>
-                              <td>0000000000</td>
-                            </tr>
-                            <tr class="fila"> 
-                              <td>xxxxxx-xx</td>
-                              <td>xxxxx-xxxxx-xxxx</td>
-                              <td>xxxx-xxxxx@gmial</td>
-                              <td>0000000000</td>
-                            </tr>
-                            <tr class="fila"> 
-                              <td>xxxxxx-xx</td>
-                              <td>xxxxx-xxxxx-xxxx</td>
-                              <td>xxxx-xxxxx@gmial</td>
-                              <td>0000000000</td>
-                            </tr>
-                            <tr class="fila"> 
-                              <td>xxxxxx-xx</td>
-                              <td>xxxxx-xxxxx-xxxx</td>
-                              <td>xxxx-xxxxx@gmial</td>
-                              <td>0000000000</td>
-                            </tr>
-                            <tr class="fila"> 
-                              <td>xxxxxx-xx</td>
-                              <td>xxxxx-xxxxx-xxxx</td>
-                              <td>xxxx-xxxxx@gmial</td>
-                              <td>0000000000</td>
+                              <td>{{lista.User.username}}</td>
+                              {% endfor %}
+                              {% else %}
+                              <h2>No hay pelicula!!!</h2>
+                              {% endif %}
+                              <td>grgrg</td>
+                              <td>rgrr</td>
+                              <td>thtrr</td>
                             </tr>
                             
                           </tbody>

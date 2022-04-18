@@ -1,32 +1,35 @@
-from urllib import response
-from django.shortcuts import render
+from msilib.schema import RadioButton
+from multiprocessing import context
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login , logout
-from django.shortcuts import redirect
-from app.models import Categoria, Estudiante, User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from app.models import Decano, Facultad, Estudiante, EstadoVotacion, TipoVotacion, Votacion,Candidato, Voto
+from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
-# Create your views here.
+
 def index(request):
     return HttpResponse('vamos a comerrers')
 
 
-def categorias(request):
-    contexto = {
-        'titulo': 'Blockbuster',
-        'holabb': 'hola guapoooo',
-        'categorias': [
-            {'id': 1, 'nombre': 'die hard'},
-            {'id': 2, 'nombre': 'lethal weapon'},
-        ],
-    }
-    return render(request, 'app/categorias.html',contexto) #para dibujar la pagina
+# def categorias(request):
+#     contexto = {
+#         'titulo': 'Blockbuster',
+#         'holabb': 'hola guapoooo',
+#         'categorias': [
+#             {'id': 1, 'nombre': 'die hard'},
+#             {'id': 2, 'nombre': 'lethal weapon'},
+#         ],
+#     }
+#     return render(request, 'app/categorias.html',contexto) #para dibujar la pagina
 
 
-def categoria(request, id):
-    numeros = [1, 2, 3]
-    print(id)
-    print(numeros)
-    return HttpResponse(f'Esta es la categoria {id}')
+# def categoria(request, id):
+#     numeros = [1, 2, 3]
+#     print(id)
+#     print(numeros)
+#     return HttpResponse(f'Esta es la categoria {id}')
 
 def menu_decano(request):
     return render(request, 'app/menu_decano.html')
@@ -39,9 +42,6 @@ def candidatos_ganadores(request):
 
 def candidatos_ganadores2(request):
     return render(request, 'app/candidatos-ganadores2.html')
-
-def categorias(request):
-    return render(request, 'app/categorias.html')
 
 def consult_candidatos_es(request):
     return render(request, 'app/consult-candidatos-es.html')
@@ -65,10 +65,41 @@ def consultar_mivoto(request):
     return render(request, 'app/consultar-mivoto.html')
 
 def crear_estudiante(request):
+    
+    return render(request, 'app/crear-estudiante.html')
 
- 
-    # Redirecciona a la pá
-   return render(request, 'app/crear-estudiante.html')
+def crear_estudiante2(request):
+    try:
+        nombre = request.POST['nombre']
+        apellidos = request.POST['apellidos']
+        documento = request.POST['documento']
+        nombreu = request.POST['nombreu']
+        semestre = request.POST['semestre']
+        email = request.POST['email']
+
+        id_usuario=request.user.id
+        facultad=Decano.objects.get(user_id=id_usuario)
+
+        u = User()
+        u.first_name=nombre
+        u.last_name = apellidos
+        u.email = email
+        u.username = nombreu
+        u.set_password(documento)
+        u.save()
+
+        estudiante=Estudiante()
+
+        estudiante.semestreActual=semestre
+        estudiante.user_id=u.id
+        estudiante.facultad_id=facultad.id
+        estudiante.documento=documento
+        estudiante.save()
+        return redirect('app:lista_estudiantes')
+    except:
+        veri=True
+        return render(request,'app/lista_estudiantes.html')
+
 
 def crear_votacion(request):
     return render(request, 'app/crear_votacion.html')
@@ -86,6 +117,15 @@ def ingresar(request):
     return render(request, 'app/ingresar.html')
 
 def lista_estudiantes(request):
+    # id_usuario=request.user.id
+    # idd = Decano.objects.get(facultad_id=id_usuario)
+    # lista = Estudiante.objects.filter(facultad_id = idd)
+    lista = User.objects.get(id=2)
+    print(lista)
+    contexto ={
+        'lista_estudiantes':lista,
+    }
+
     return render(request, 'app/lista_estudiantes.html')
 
 def listade_votaciones_est(request):
@@ -154,34 +194,5 @@ def view_logout(request):
   return redirect('app:ingresar')
 
 
-def crear_estudiante2(request):
-
-    n1 = request.POST['nombre']
-    n2 = request.POST['apellidos']
-    doc = request.POST['documento']
-    sem= request.POST['semestre']
-    email = request.POST['email']
-
-    print(n1)
-    print(n2)
-    print(doc)
-    print(sem)
-    print(email)
- 
-    # Obtiene la categoria
-   # categoria = User.objects.get(pk=id_categoria)
- 
-#     #Crea la pelicula    
-   # pelicula = User(=titulo)
-
-    c =User()
-    c.first_name = n1
-    c.last_name = n2
-    c.email = email
-    c.password = doc
-    #Estudiante.semestreActual = sem
-    c.save()
-
-    return redirect('app:crear_estudiante')
 
    
