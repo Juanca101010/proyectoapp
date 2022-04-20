@@ -84,18 +84,15 @@ class TipoVotacion (models.Model):
 
 class Votacion (models.Model):
     nombre= models.CharField(max_length=45, null=False)
-    tipo= models.ForeignKey(
-        TipoVotacion,
+    tipo= models.ForeignKey(TipoVotacion,
         related_name='tipos_votaciones',
         on_delete=models.PROTECT
     )
-    estado= models.ForeignKey(
-        EstadoVotacion,
+    estado= models.ForeignKey(EstadoVotacion,
         related_name='estado_votaciones',
         on_delete=models.PROTECT
     )
-    facultad= models.ForeignKey(
-        Facultad,
+    facultad= models.ForeignKey(Facultad,
         related_name='facultad_votaciones',
         null=False,
         on_delete=models.PROTECT

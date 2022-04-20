@@ -28,34 +28,27 @@
                           <thead>
                             <tr class="no">
                               <th>Nombre de la Votación</th>
-                              <th>Estado Postulación</th>
-                              <th>Estado Votación</th>
-                              <th>Estado Cerrada</th>
+                              <th>Estado de la Votación</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr class="fila">
                               <td>
+                                {%for vot  in cambiar_estado%}
                                 <select name="" id="">
-                                  <option value="">Votaciones</option>
-                                  <option value="">Votación</option>
-                                  <option value="">Votación</option>
-                                  <option value="">Votación</option>
-                                  <option value="">Votación</option>
-                                  <option value="">Votación</option>
+                                  <option value="">{{vot.nombre}}</option>
                                 </select>
+                                {% endfor %}
                               </td>
                               <td for="estado" id="pos">
-                                  Postulación
-                                <input type="radio" name="estado" />
-                              </td>  
-                              <td for="estado"id="vot">
-                                  Votación
-                                <input type="radio" name="estado" />
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  Cerrada
-                                <input type="radio" name="estado" />
+                                <form action="{% url 'app:cambiar_estado2' %}" method="post" id="formu">
+                                  <select name="estados" id="estados">
+                                    <option value="1">Postulación</option>
+                                    <option value="2">Votación</option>
+                                    <option value="3">Cerrada</option>
+                                  </select>
+                                  <button type="submit">Guardar Cambios</button>
+                              </form>
                               </td>  
                             </tr>
                            

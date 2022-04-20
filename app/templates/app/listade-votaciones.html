@@ -36,82 +36,15 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {%for lista2  in listade_votaciones%}
                             <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
+                              <td>{{lista2.nombre}}</td>
+                              <td>2022-1</td>
+                              <td>{{lista2.fechaInicio}}</td>
+                              <td>{{lista2.fechaFinal}}</td>
+                              <td>{{lista2.tipo_id}}</td>
                             </tr>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                           
+                            {% endfor %}
                           </tbody>
                         </table>
                         <br>

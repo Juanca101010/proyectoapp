@@ -35,7 +35,28 @@ def menu_decano(request):
     return render(request, 'app/menu_decano.html')
 
 def cambiar_estado(request):
+    vot = Votacion.objects.all()
+    print(vot)
+    contexto ={
+        'cambiar_estado':vot,
+    }
     return render(request, 'app/cambiar_estado.html')
+
+def cambiar_estado1(request):
+    return render(request, 'app/cambiar_estado.html')
+
+def cambiar_estado2(request):
+    try:
+        est = request.POST['estados']
+
+        vo = Votacion()
+        vo.estado_id=est
+        vo.save()
+
+        return redirect('app:consulta_votacionfacultad')
+    except:
+        veri=True
+        return render(request,'app/consulta_votacionfacultad.html')
 
 def candidatos_ganadores(request):
     return render(request, 'app/candidatos-ganadores.html')
@@ -105,25 +126,30 @@ def crear_votacion(request):
 
 def crear_votacion2(request):
     try:
-        nombrev = request.POST['nombrev']
-        fecha = request.POST['fecha']
-        fecha2 = request.POST['fecha2']
-        facultad = request.POST['facultad']
+        
+        nv = request.POST['nombrev']
+        fecha1 = request.POST['fecha']
+        fecha22 = request.POST['fecha2']
+       # fa = request.POST['facultad']
 
-        id_usuario=request.user.id
-        facultad=Decano.objects.get(user_id=id_usuario)
+        f= Facultad.objects.get(id=1)
+        t= TipoVotacion.objects.get(id=1)
+        e= EstadoVotacion.objects.get(id=1)
 
-        v = votacion()
-        v.nombre = nombrev
-        v.fechaInicio = fecha
-        v.fechaFinal = fecha2
-        v.tipo_id = facultad
+        v = Votacion()
+        v.nombre = nv
+        v.fechaInicio = fecha1
+        v.fechaFinal = fecha22
+        v.tipo = t
+        v.estado = e
+        v.facultad=f
         v.save()
 
-        return redirect('app:crear_votacion')
-    except:
+        return redirect('app:listade_votaciones')
+    except Exception as e:
+        print(e)
         veri=True
-        return render(request,'app/votacion-creada.html')
+        return render(request,'app/listade-votaciones.html')
 
 def est(request):
     return render(request, 'app/est.html')
@@ -153,7 +179,14 @@ def listade_votaciones_est(request):
     return render(request, 'app/listade-votaciones-est.html')
 
 def listade_votaciones(request):
-    return render(request, 'app/listade-votaciones.html')
+
+    lista2 = Votacion.objects.all()
+    print(lista2)
+    contexto ={
+        'listade_votaciones':lista2,
+    }
+
+    return render(request, 'app/listade-votaciones.html',contexto)
 
 def listadecandidatos_vot(request):
     return render(request, 'app/listadecandidatos-vot.html')
