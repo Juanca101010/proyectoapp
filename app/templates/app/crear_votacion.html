@@ -23,43 +23,33 @@
                 <div class="cajita">      
                 <h3>Crear Votación</h3>
       <br>
-        <form id="formu">
+      <form action="{% url 'app:crear_votacion2' %}" method="POST" id="formu">
+        {% csrf_token %}
 
-            <label for="apellidos" ><h3>Nombre de Votación&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
-            <input type="text" />
+            <label  ><h3>Nombre de Votación&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
+            <input name="nombrev" id="nombrev"type="text" />
             <br />  
             <br />
-            <label for="apellidos"><h3>Fecha de inicio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
-            <input type="date"  />
+            <label ><h3>Fecha de inicio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
+            <input name="fecha" id="fecha"type="date" />
             <br />
             <br />
-            <label for="apellidos"><h3>Fecha de finalización&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
-            <input type="text"  />
+            <label ><h3>Fecha de finalización&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
+            <input name="fecha2" id="fecha2"type="date" />
             <br />
             <br />
-            <label for="apellidos"><h3>Ciclo&nbsp;&nbsp;&nbsp;</h3> </label>
-            <select name="" id="">
-              <option value="">Ciclo1</option>
-              <option value="">Ciclo1</option>
-              <option value="">Ciclo1</option>
-              <option value="">Ciclo1</option>
-              <option value="">Ciclo1</option>
+            <label ><h3>Ciclo 20221&nbsp;&nbsp;&nbsp;</h3> </label>
+            <output type="text" id="facultad" >
+          <br>
+          <br>
+            <label ><h3>Selesccione tipo de Votación&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
+            <select name="facultad" id="facultad">
+              <option value="1">Facultad</option>
+              <option value="2">semestre</option>
             </select>
-          <br>
-          <br>
-            <label for="apellidos"><h3>Facultad&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3></label>
-            <output type="text"  />
-            <label for="">Ingenieria de Telecomunicaciones</label>
             <br />
             <br />
-            <label for="masculino"><h3>Votación representantes de semestre</h3></label>
-            <input type="radio" name="genero" />
-            <br>
-            <label for="femenino"><h3>Votación representantes de facultad</h3></label> 
-            <input type="radio" name="genero" />  
-            <br />
-            <br />
-            <a href="{% url 'app:votacion-creada' %}"  class="cr">crear</a>
+            <button type="submit">Crear</button>
       
             
           </form>

@@ -73,7 +73,6 @@ def crear_estudiante2(request):
         nombre = request.POST['nombre']
         apellidos = request.POST['apellidos']
         documento = request.POST['documento']
-        nombreu = request.POST['nombreu']
         semestre = request.POST['semestre']
         email = request.POST['email']
 
@@ -84,8 +83,8 @@ def crear_estudiante2(request):
         u.first_name=nombre
         u.last_name = apellidos
         u.email = email
-        u.username = nombreu
-        u.set_password(documento)
+        u.username = email
+        u.password = documento
         u.save()
 
         estudiante=Estudiante()
@@ -104,6 +103,28 @@ def crear_estudiante2(request):
 def crear_votacion(request):
     return render(request, 'app/crear_votacion.html')
 
+def crear_votacion2(request):
+    try:
+        nombrev = request.POST['nombrev']
+        fecha = request.POST['fecha']
+        fecha2 = request.POST['fecha2']
+        facultad = request.POST['facultad']
+
+        id_usuario=request.user.id
+        facultad=Decano.objects.get(user_id=id_usuario)
+
+        v = votacion()
+        v.nombre = nombrev
+        v.fechaInicio = fecha
+        v.fechaFinal = fecha2
+        v.tipo_id = facultad
+        v.save()
+
+        return redirect('app:crear_votacion')
+    except:
+        veri=True
+        return render(request,'app/votacion-creada.html')
+
 def est(request):
     return render(request, 'app/est.html')
 
@@ -120,13 +141,13 @@ def lista_estudiantes(request):
     # id_usuario=request.user.id
     # idd = Decano.objects.get(facultad_id=id_usuario)
     # lista = Estudiante.objects.filter(facultad_id = idd)
-    lista = User.objects.get(id=2)
+    lista = User.objects.all()
     print(lista)
     contexto ={
         'lista_estudiantes':lista,
     }
 
-    return render(request, 'app/lista_estudiantes.html')
+    return render(request, 'app/lista_estudiantes.html',contexto)
 
 def listade_votaciones_est(request):
     return render(request, 'app/listade-votaciones-est.html')

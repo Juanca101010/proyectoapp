@@ -18,6 +18,7 @@ urlpatterns = [
     path('crear-estudiante/', views.crear_estudiante, name='crear-estudiante'),  
     path('crear_estudiante2/', views.crear_estudiante2, name='crear_estudiante2'),  
     path('crear_votacion/', views.crear_votacion, name='crear_votacion'), 
+    path('crear_votacion2/', views.crear_votacion2, name='crear_votacion2'), 
     path('est/', views.est, name='est'), 
     path('hacer_votacion/', views.hacer_votacion, name='hacer_votacion'), 
     path('hacervotacion_facultad/', views.hacervotacion_facultad, name='hacervotacion_facultad'), 
