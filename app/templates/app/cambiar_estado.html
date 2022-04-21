@@ -1,66 +1,68 @@
 {% load static %}
-	
+
 
 <html lang="en">
-<head>
-    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
-    <link href="{% static 'app/css/estilo_cambiarestado.css' %}" rel="stylesheet">
-</head>
-<body>
-    
-      <div class="contenedor" >
 
-        <div class="header">
-          <ul id="menu">
-            <li ><a href="{% url 'app:menu_decano' %}">Inicio</a></li>
-            <li ><a href="{% url 'app:vot' %}">Votaciones</a></li>
-            <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
-            <li><a href="{% url 'app:consult' %}">Consultas</a></li> 
-            <li><a href="{% url 'app:ingresar' %}" >Salir</a></li>
-        </ul>
-        </div>
-          
-            <div class="contenido">
-                <br>
-                <h3>Cambiar Estado</h2>
-                <br><br><br>
-                <table>
-                          <thead>
-                            <tr class="no">
-                              <th>Nombre de la Votación</th>
-                              <th>Estado de la Votación</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr class="fila">
-                              <td>
-                                {%for vot  in cambiar_estado%}
-                                <select name="" id="">
-                                  <option value="">{{vot.nombre}}</option>
-                                </select>
-                                {% endfor %}
-                              </td>
-                              <td for="estado" id="pos">
-                                <form action="{% url 'app:cambiar_estado2' %}" method="post" id="formu">
-                                  <select name="estados" id="estados">
-                                    <option value="1">Postulación</option>
-                                    <option value="2">Votación</option>
-                                    <option value="3">Cerrada</option>
-                                  </select>
-                                  <button type="submit">Guardar Cambios</button>
-                              </form>
-                              </td>  
-                            </tr>
-                           
-                          </tbody>
-                        </table>
-                        <br>
-                        <br>
-                        <a href="" class="cr">Guardar</a>
-          </div>
+<head>
+  <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+  <link href="{% static 'app/css/estilo_cambiarestado.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <div class="header">
+      <ul id="menu">
+        <li><a href="{% url 'app:menu_decano' %}">Inicio</a></li>
+        <li><a href="{% url 'app:vot' %}">Votaciones</a></li>
+        <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
+        <li><a href="{% url 'app:consult' %}">Consultas</a></li>
+        <li><a href="{% url 'app:ingresar' %}">Salir</a></li>
+      </ul>
+    </div>
+
+    <div class="contenido">
+      <br>
+      <h3>Cambiar Estado</h2>
+        <br><br><br>
+        <table>
+          <thead>
+            <tr class="no">
+              <th>nombre de la votación</th>
+              <th>Estado de la Votación</th>
+              </tr>
+              </thead>
+              <tbody>
+                <form action="{% url 'app:cambiar_estado2' %}" method="post" id="formu">
+                  {% csrf_token %}
+                  <td>
+                    <select>
+                      {%for lista3 in cambiar_estado%}
+                      <option name="nombres" value="{{lista3.nombre}}">{{lista3.nombre}}</option>
+                      {% endfor %}
+                    </select>
+                  </td>
+                  <td for="estado" id="pos">
+                    <select name="estados" id="estados">
+                      <option value="1">Postulación</option>
+                      <option value="2">Votación</option>
+                      <option value="3">Cerrada</option>
+                    </select>
+                    <button type="submit">Guardar Cambios</button>
+                  </td>
+                  </tr>
+                </form>
+              </tbody>
+              </table>
+              <br>
+              <br>
+              <a href="" class="cr">Guardar</a>
+              </div>
               <div class="contenido2">
-                <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>
+                <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">
+              </div>
               <div class="footer"></div>
-            </div>
-</body>
+              </div>
+              </body>
 </html>

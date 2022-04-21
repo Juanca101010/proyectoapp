@@ -28,15 +28,15 @@
                 <select>
                     <option value="">Semestre</option>
                     <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 1</option>
+                    <option value="1">Semestre 2</option>
+                    <option value="1">Semestre 3</option>
+                    <option value="1">Semestre 4</option>
+                    <option value="1">Semestre 5</option>
+                    <option value="1">Semestre 6</option>
+                    <option value="1">Semestre 7</option>
+                    <option value="1">Semestre 8</option>
+                    <option value="1">Semestre 9</option>
+                    <option value="1">Semestre 10</option>
                 </select>
                 <br><br>
                 <table>
@@ -54,33 +54,21 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {%for listav  in consultar_votacionsemestre%}
                             <tr class="fila"> 
-                              <td></td>
-                              <td for="estado" id="pos">
-                                  
-                              </td>  
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
+                              <td>{{listav.nombre}}</td>
+                              <td>{{listav.fechaInicio}}</td>
+                              <td>{{listav.fechaFinal}}</td>
+                              <td>2022-1</td>
+                              <td>{{listav.estado}}</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>
                                 <a href="{% url 'app:candidatos-ganadores' %}"class="cr">Consultar</a>
-                              </td>  
-                            </tr>      
+                              </td> 
+                            </tr>
+                            {% endfor %}   
                           </tbody>
                         </table>
                         <br>

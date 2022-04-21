@@ -25,94 +25,27 @@
                 <br><br>
                 <br><br>
                 <table>
-                          <thead>
-                            <tr>
-                              <th>Nombre Votacion</th>
-                              <th>Ciclo</th>
-                              <th>Fecha de inicio</th>
-                              <th>Fecha finalización</th>
-                              <th>tipos de Votacion</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td> 
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                  
-                              </td>  
-                              <td for="estado" id="">
-                                <p>Resultado: <output id="" for=""></output></p>
-                              </td>  
-                            </tr>
-                           
-                          </tbody>
-                        </table>
+                  <thead>
+                    <tr>
+                      <th>Nombre Votacion</th>
+                      <th>Ciclo</th>
+                      <th>Fecha de inicio</th>
+                      <th>Fecha finalización</th>
+                      <th>tipos de Votacion</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%for lista22  in listade_votaciones2%}
+                    <tr class="fila"> 
+                      <td>{{lista22.nombre}}</td>
+                      <td>2022-1</td>
+                      <td>{{lista22.fechaInicio}}</td>
+                      <td>{{lista22.fechaFinal}}</td>
+                      <td>{{lista22.tipo_id}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
                         <br>
           </div>
               <div class="contenido2">

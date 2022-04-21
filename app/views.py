@@ -35,28 +35,26 @@ def menu_decano(request):
     return render(request, 'app/menu_decano.html')
 
 def cambiar_estado(request):
-    vot = Votacion.objects.all()
-    print(vot)
+    lista3 = Votacion.objects.all()
+    print(lista3)
     contexto ={
-        'cambiar_estado':vot,
+        'cambiar_estado':lista3,
     }
-    return render(request, 'app/cambiar_estado.html')
+    return render(request, 'app/cambiar_estado.html',contexto)
 
-def cambiar_estado1(request):
-    return render(request, 'app/cambiar_estado.html')
 
 def cambiar_estado2(request):
     try:
         est = request.POST['estados']
-
+        est = request.POST['nombres']
         vo = Votacion()
         vo.estado_id=est
         vo.save()
 
-        return redirect('app:consulta_votacionfacultad')
-    except:
-        veri=True
-        return render(request,'app/consulta_votacionfacultad.html')
+        return redirect('app:cambiar_estado')
+    except Exception as e:
+        print(e)
+        return render(request,'app/cambiar_estado.html')
 
 def candidatos_ganadores(request):
     return render(request, 'app/candidatos-ganadores.html')
@@ -80,7 +78,12 @@ def consulta_votacionfacultad(request):
     return render(request, 'app/consulta_votacionfacultad.html')
 
 def consultar_votacionsemestre(request):
-    return render(request, 'app/consultar_votacionsemestre.html')
+    listav = Votacion.objects.all()
+    print(listav)
+    contexto ={
+        'consultar_votacionsemestre':listav,
+    }
+    return render(request, 'app/consultar_votacionsemestre.html',contexto)
 
 def consultar_mivoto(request):
     return render(request, 'app/consultar-mivoto.html')
@@ -176,7 +179,14 @@ def lista_estudiantes(request):
     return render(request, 'app/lista_estudiantes.html',contexto)
 
 def listade_votaciones_est(request):
-    return render(request, 'app/listade-votaciones-est.html')
+    lista22 = Votacion.objects.all()
+   #tipo=Votacion.objects.get(tipo_id=2)
+    print(lista22)
+    #print(tipo)
+    contexto ={
+        'listade_votaciones2':lista22,
+    }
+    return render(request, 'app/listade-votaciones-est.html',contexto)
 
 def listade_votaciones(request):
 
@@ -195,7 +205,36 @@ def menu_estudiante(request):
     return render(request, 'app/menu_estudiante.html')
 
 def postularestudiante(request):
-    return render(request, 'app/postularestudiante.html')
+    lista3 = Votacion.objects.all()
+    lista4 = User.objects.all()
+    print(lista3)
+    print(lista4)
+    contexto1 ={
+        'p1':lista3,
+        'p2':lista4,
+    }
+
+    return render(request, 'app/postularestudiante.html',contexto1)
+
+def postularestudiante2(request):
+   # try: 
+        nom = request.POST.get['nombres',False]
+        vot = request.POST['vot']
+
+        c= Candidato.objects.all()
+
+        c1 = Candidato()
+        c1.estudiante = nom
+        c1.votacion = vot 
+
+        c1.save()
+
+        return redirect('app:consulta_votacionfacultad')
+    # except Exception as e:
+    #     print(e)
+    #     veri=True
+    # return render(request,'app/postularestudiante.html')
+    
 
 def postularse(request):
     return render(request, 'app/postularse.html')

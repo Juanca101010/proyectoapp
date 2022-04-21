@@ -1,100 +1,69 @@
 {% load static %}
-	
+
 
 <html lang="en">
+
 <head>
     <title>{% block titulo %}Pagina Principal{% endblock %}</title>
     <link href="{% static 'app/css/estilo_posestudiante.css' %}" rel="stylesheet">
 </head>
+
 <body>
-    
-      <div class="contenedor" >
+
+    <div class="contenedor">
 
         <div class="header">
             <ul id="menu">
-              <li ><a href="{% url 'app:menu_decano' %}">Inicio</a></li>
-              <li ><a href="{% url 'app:vot' %}">Votaciones</a></li>
-              <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
-              <li><a href="{% url 'app:consult' %}">Consultas</a></li> 
-              <li><a href="{% url 'app:ingresar' %}" >Salir</a></li>
-          </ul>
-          </div>
-          
-            <div class="contenido">
-                <br>
-                <br><br>
-                <h3>Candidatos a representande de facultad</h3>
-                <div class="flexsearch">
+                <li><a href="{% url 'app:menu_decano' %}">Inicio</a></li>
+                <li><a href="{% url 'app:vot' %}">Votaciones</a></li>
+                <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
+                <li><a href="{% url 'app:consult' %}">Consultas</a></li>
+                <li><a href="{% url 'app:ingresar' %}">Salir</a></li>
+            </ul>
+        </div>
+
+        <div class="contenido">
+            <br>
+            <br><br>
+            <h3>Candidatos a representande de facultad</h3>
+            <br>
+            <br>
+            <select>
+                {%for lista4 in p2%}
+                <option name="nombres" value={{lista4.id}}>{{lista4.first_name}} {{lista4.last_name}}</option>
+                {% endfor %}
+            </select>
+            <!-- <div class="flexsearch">
                         <form class="flexsearch--form" action="#" method="post">
                             <div class="flexsearch--input-wrapper">
                                 <input class="flexsearch--input" type="search" >
                                 <input class="flexsearch--submit" type="submit" value="Buscar"/>
                             </div>
                         </form>
-            </div>
-                <br><br>
-                <h3>Votación</h3>   
+            </div> -->
+            <br><br>
+            <h3>Votación</h3>
+            <form action="{% url 'app:postularestudiante2' %}" method="post" id="formu">
+                {% csrf_token %}
                 <select>
-                    <option value="">Votación</option>
-                    <option value="1">Candidato 1</option>
-                    <option value="1">Candidato 1</option>
-                    <option value="1">Candidato 1</option>
-                    <option value="1">Candidato 1</option>
-                    <option value="1">Candidato 1</option>
-                    <option value="1">Candidato 1</option>
-                    <option value="1">Candidato 1</option>
-                    <option value="1">Candidato 1</option>
+                    {%for lista3 in p1%}
+                    <option name="vot" value={{lista3.id}} >{{lista3.nombre}}</option>
+                    {% endfor %}
                 </select>
                 <br><br>
-                        <br>
-                        <a href="" class="cr">Guardar</a>
-          </div>
-              <div class="contenido2">
-                <table>
-                    <thead>
-                        <tr class="no">
-                            <th>Numero</th>
-                            <th>Lista Estudiantes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="fila">
-                            <td>Nombre 1</td>
-                            <td for="estado" id="pos">
-                                Postulación
-                            </td> 
-                         </tr>
-                        <tr class="fila">
-                            <td>Nombre 1</td>
-                            <td for="estado" id="pos">
-                                Postulación
-                            </td> 
-                         </tr>
-                        <tr class="fila">
-                            <td>Nombre 1</td>
-                            <td for="estado" id="pos">
-                                Postulación
-                            </td> 
-                         </tr>
-                        <tr class="fila">
-                            <td>Nombre 1</td>
-                            <td for="estado" id="pos">
-                                Postulación
-                            </td> 
-                         </tr>
-                        <tr class="fila">
-                            <td>Nombre 1</td>
-                            <td for="estado" id="pos">
-                                Postulación
-                            </td> 
-                         </tr>
-                        
-                    </tbody>
-                  </table>
-              </div>
-              <div class="contenido3">
-                <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>
-              <div class="footer"></div>
-            </div>
+                <br>
+                <a href="" class="cr">Guardar</a>
+                <button type="submit">Crear</button>
+        </div>
+        </form>
+        <div class="contenido2">
+
+        </div>
+        <div class="contenido3">
+            <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">
+        </div>
+        <div class="footer"></div>
+    </div>
 </body>
+
 </html>
