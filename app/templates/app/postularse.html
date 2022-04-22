@@ -1,50 +1,57 @@
 {% load static %}
-	
+
 
 <html lang="en">
-<head>
-    <title>{% block titulo %}Pagina Principal{% endblock %}</title>
-    <link href="{% static 'app/css/estilo_postularse.css' %}" rel="stylesheet">
-</head>
-<body>
-    
-      <div class="contenedor" >
 
-        <div class="header">
-          <ul id="menu">
-            <li ><a href="{% url 'app:menu_estudiante' %}">Inicio</a></li>
-            <li><a href="{% url 'app:postularse' %}">Postularse</a></li>
-            <li><a href="{% url 'app:consult-estudiante' %}">Consultas</a></li> 
-            <li><a href="{% url 'app:ingresar' %}" id="profiles">Salir</a></li>
-            </ul>
-        </div>
-          
-            <div class="contenido">
-                <br>
-                <h3>Postulación</h2>
-                <br><br>
-                <h3>Elegir Votación</h3>
-                <select>
-                    <option value="">Votación</option>
-                    <option value="">Votación</option>
-                    <option value="">Votación</option>
-                    <option value="">Votación</option>
-                    <option value="">Votación</option>
-                    <option value="">Votación</option>
-                    <option value="">Votación</option>
-                    <option value="">Votación</option>
-                </select>
-                <br><br>
-                <label for="apellidos" ><h2>Propuestas</h2></label>
-              <input type="text" />
-                        <br>
-                        <br>
-                        <br>
-                        <a href="{% url 'app:ustedse-postulo' %}" class="cr">Guardar</a>
-          </div>
-              <div class="contenido2">
-                <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>
-              <div class="footer"></div>
-            </div>
+<head>
+  <title>{% block titulo %}Pagina Principal{% endblock %}</title>
+  <link href="{% static 'app/css/estilo_postularse.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <div class="header">
+      <ul id="menu">
+        <li><a href="{% url 'app:menu_estudiante' %}">Inicio</a></li>
+        <li><a href="{% url 'app:postularse' %}">Postularse</a></li>
+        <li><a href="{% url 'app:consult-estudiante' %}">Consultas</a></li>
+        <li><a href="{% url 'app:ingresar' %}" id="profiles">Salir</a></li>
+      </ul>
+    </div>
+
+    <div class="contenido">
+      <form action="{% url 'app:postularse2' %}" method="POST" id="formu">
+        {% csrf_token %}
+        <br>
+        <h3>Postulación</h2>
+          <br><br>
+          <h3>Elegir Votación</h3>
+          <select name="vot">
+            {%for listav in postularse%}
+            <option value={{listav.id}} >{{listav.nombre}}</option>
+            {% endfor %}
+          </select>
+          <br><br>
+          <label for="">
+            <h2>Propuestas</h2>
+          </label>
+          <input type="text" name="propuestas" />
+          <br>
+          <br>
+          <br>
+          <!-- <a href="{% url 'app:ustedse-postulo' %}" class="cr">Guardar</a> -->
+          <button type="submit">Crear</button>
+
+
+      </form>
+    </div>
+    <div class="contenido2">
+      <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">
+    </div>
+    <div class="footer"></div>
+  </div>
 </body>
+
 </html>

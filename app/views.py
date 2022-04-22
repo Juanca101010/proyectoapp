@@ -108,7 +108,7 @@ def crear_estudiante2(request):
         u.last_name = apellidos
         u.email = email
         u.username = email
-        u.password = documento
+        u.set_password(documento)
         u.save()
 
         estudiante=Estudiante()
@@ -237,7 +237,34 @@ def postularestudiante2(request):
     
 
 def postularse(request):
-    return render(request, 'app/postularse.html')
+    listav= Votacion.objects.all()
+    print(listav)
+    contexto ={
+        'postularse':listav,
+    }
+    return render(request, 'app/postularse.html',contexto)
+
+def postularse2(request):
+    try:
+        
+        nv = request.POST['propuestas']
+        vot = request.POST['vot']
+        idest= request.user.id
+        idest2= Estudiante.objects.get(id_user=idest)
+        #semestrea=Estudiante(id=idest2)
+        
+        c = Candidato()
+        c.propuesta = nv
+        c.Votacion_id =int(vot)
+        c.estudiante_id=idest2
+        #c.semestre=semestrea.semestreActual
+        c.save()
+
+        return redirect('app:ustedse-postulo')
+    except Exception as e:
+        print(e)
+        veri=True
+        return render(request,'app/postularse.html')
 
 def resultados_finales(request):
     return render(request, 'app/resultados_finales.html')
@@ -265,7 +292,6 @@ def autenticar(request):
     # Obtiene los datos del formulario de autenticación
     username = request.POST['username']
     password = request.POST['password']
-
     # Obtiene el usuario
     usuario = authenticate(username=username, password=password)
 
@@ -273,7 +299,6 @@ def autenticar(request):
     if usuario is not None:
         # Inicia la sesión del usuario en el sistema
         login(request, usuario)
-        # Redirecciona a una página de éxito
         return redirect('app:menu_decano')
     else:
         # Retorna un mensaje de error de login no válido

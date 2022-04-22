@@ -32,6 +32,7 @@ urlpatterns = [
     path('postularestudiante/', views.postularestudiante, name='postularestudiante'), 
     path('postularestudiante2/', views.postularestudiante2, name='postularestudiante2'), 
     path('postularse/', views.postularse, name='postularse'), 
+    path('postularse2/', views.postularse2, name='postularse2'), 
     path('resultados_finales/', views.resultados_finales, name='resultados_finales'), 
     path('resultadosfinales_estudiantes/', views.resultadosfinales_estudiantes, name='resultadosfinales_estudiantes'), 
     path('ustedse-postulo/', views.ustedse_postulo, name='ustedse-postulo'), 

@@ -14,25 +14,7 @@
 
 
       <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">  
-        <!-- <form>
-        <fieldset>
-          <label for="username">Usuario</label>
-          <input type="text" id="username" />
-        </fieldset>
-        <fieldset>
-          <label for="password">Contraseña</label>
-          <input type="password" id="password" />
-        </fieldset>
-        <fieldset>
-          <a id="ing" href="{% url 'app:menu_decano' %}" >
-            <input type="button" value="Ingresar Decano">
-        </a>
-          <a id="ing" href="{% url 'app:menu_estudiante' %}" >
-            <input type="button" value="Ingresar estudiante">
-        </a>
-        </fieldset>
-      </form>
-      <br> -->
+
       <form action="{% url 'app:autenticar' %}" method="post">
         {% csrf_token %}
         <span>Usuario:</span>
