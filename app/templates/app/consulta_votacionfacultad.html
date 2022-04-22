@@ -39,33 +39,21 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {%for listaf  in consultar_votacionfacultad%}
                             <tr class="fila"> 
-                              <td></td>
-                              <td for="estado" id="pos">
-                                  
-                              </td>  
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                <a href="{% url 'app:candidatos-ganadores2' %}"class="cr">Consultar</a>
-                              </td>  
-                            </tr>      
+                              <td>{{listaf.nombre}}</td>
+                              <td>{{listaf.fechaInicio}}</td>
+                              <td>{{listaf.fechaFinal}}</td>
+                              <td>2022-1</td>
+                              <td>{{listaf.estado}}</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>-</td>
+                              <td>
+                                <a href="{% url 'app:candidatos-ganadores' %}"class="cr">Consultar</a>
+                              </td> 
+                            </tr>
+                            {% endfor %}   
                           </tbody>
                         </table>
                         <br>

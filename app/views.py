@@ -75,7 +75,13 @@ def consult(request):
     return render(request, 'app/consult.html')
 
 def consulta_votacionfacultad(request):
-    return render(request, 'app/consulta_votacionfacultad.html')
+    listaf = Votacion.objects.all()
+
+    print(listaf)
+    contexto ={
+        'consultar_votacionfacultad':listaf,
+    }
+    return render(request, 'app/consulta_votacionfacultad.html',contexto)
 
 def consultar_votacionsemestre(request):
     listav = Votacion.objects.all()
@@ -115,12 +121,13 @@ def crear_estudiante2(request):
 
         estudiante.semestreActual=semestre
         estudiante.user_id=u.id
+        print(u.id)
         estudiante.facultad_id=facultad.id
         estudiante.documento=documento
         estudiante.save()
         return redirect('app:lista_estudiantes')
-    except:
-        veri=True
+    except Exception as e:
+        print(e)
         return render(request,'app/lista_estudiantes.html')
 
 
@@ -133,7 +140,12 @@ def crear_votacion2(request):
         nv = request.POST['nombrev']
         fecha1 = request.POST['fecha']
         fecha22 = request.POST['fecha2']
-       # fa = request.POST['facultad']
+        fa = request.POST['facultad']
+
+        if fa==1:
+            t= TipoVotacion.objects.get(id=1)
+        else:
+            t= TipoVotacion.objects.get(id=2)
 
         f= Facultad.objects.get(id=1)
         t= TipoVotacion.objects.get(id=1)
@@ -148,7 +160,7 @@ def crear_votacion2(request):
         v.facultad=f
         v.save()
 
-        return redirect('app:listade_votaciones')
+        return redirect('app:listade-votaciones')
     except Exception as e:
         print(e)
         veri=True
@@ -173,7 +185,7 @@ def lista_estudiantes(request):
     lista = User.objects.all()
     print(lista)
     contexto ={
-        'lista_estudiantes':lista,
+        'lista_estudiante':lista,
     }
 
     return render(request, 'app/lista_estudiantes.html',contexto)
@@ -242,7 +254,7 @@ def postularse(request):
     contexto ={
         'postularse':listav,
     }
-    return render(request, 'app/postularse.html',contexto)
+    return render(request,'app/postularse.html',contexto)
 
 def postularse2(request):
     try:
@@ -250,14 +262,14 @@ def postularse2(request):
         nv = request.POST['propuestas']
         vot = request.POST['vot']
         idest= request.user.id
-        idest2= Estudiante.objects.get(id_user=idest)
-        #semestrea=Estudiante(id=idest2)
+        idest2= Estudiante.objects.get(user_id=idest)
+        semestrea=Estudiante(id=idest2)
         
         c = Candidato()
         c.propuesta = nv
-        c.Votacion_id =int(vot)
-        c.estudiante_id=idest2
-        #c.semestre=semestrea.semestreActual
+        c.Votacion_id =vot
+        c.estudiante=idest2
+        c.semestre=semestrea
         c.save()
 
         return redirect('app:ustedse-postulo')
