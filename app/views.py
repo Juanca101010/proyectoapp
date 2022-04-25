@@ -6,7 +6,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from app.models import Decano, Facultad, Estudiante, EstadoVotacion, TipoVotacion, Votacion,Candidato, Voto
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
+from django.db.models import Q	
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -31,6 +32,8 @@ def index(request):
 #     print(numeros)
 #     return HttpResponse(f'Esta es la categoria {id}')
 
+	
+@login_required
 def menu_decano(request):
     return render(request, 'app/menu_decano.html')
 
@@ -134,6 +137,8 @@ def crear_estudiante2(request):
 def crear_votacion(request):
     return render(request, 'app/crear_votacion.html')
 
+	
+@login_required
 def crear_votacion2(request):
     try:
         

@@ -16,7 +16,8 @@
             <li ><a href="{% url 'app:vot' %}">Votaciones</a></li>
             <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
             <li><a href="{% url 'app:consult' %}">Consultas</a></li> 
-            <li><a href="{% url 'app:view_logout' %}">Salir</a></li>    
+            <li><a href="{% url 'app:consult' %}">{{ request.User.first_name }}</a></li> 
+            <li><a href="{% url 'app:view_logout' %}">Salir</a></li>   
         </ul>
         </div>
         {% endblock %}
