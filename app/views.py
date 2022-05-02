@@ -37,6 +37,7 @@ def index(request):
 def menu_decano(request):
     return render(request, 'app/menu_decano.html')
 
+@login_required
 def cambiar_estado(request):
     lista3 = Votacion.objects.all()
     print(lista3)
@@ -45,7 +46,7 @@ def cambiar_estado(request):
     }
     return render(request, 'app/cambiar_estado.html',contexto)
 
-
+@login_required
 def cambiar_estado2(request):
     try:
         est = request.POST['estados']
@@ -59,24 +60,33 @@ def cambiar_estado2(request):
         print(e)
         return render(request,'app/cambiar_estado.html')
 
+
+@login_required
 def candidatos_ganadores(request):
     return render(request, 'app/candidatos-ganadores.html')
 
+
+@login_required
 def candidatos_ganadores2(request):
     return render(request, 'app/candidatos-ganadores2.html')
 
+@login_required
 def consult_candidatos_es(request):
     return render(request, 'app/consult-candidatos-es.html')
 
+@login_required
 def consult_candidatos(request):
     return render(request, 'app/consult-candidatos.html')
 
+@login_required
 def consult_estudiante(request):
     return render(request, 'app/consult-estudiante.html')
 
+@login_required
 def consult(request):
     return render(request, 'app/consult.html')
 
+@login_required
 def consulta_votacionfacultad(request):
     listaf = Votacion.objects.all()
 
@@ -86,6 +96,7 @@ def consulta_votacionfacultad(request):
     }
     return render(request, 'app/consulta_votacionfacultad.html',contexto)
 
+@login_required
 def consultar_votacionsemestre(request):
     listav = Votacion.objects.all()
     print(listav)
@@ -94,13 +105,17 @@ def consultar_votacionsemestre(request):
     }
     return render(request, 'app/consultar_votacionsemestre.html',contexto)
 
+@login_required
 def consultar_mivoto(request):
     return render(request, 'app/consultar-mivoto.html')
 
+
+@login_required
 def crear_estudiante(request):
     
     return render(request, 'app/crear-estudiante.html')
 
+@login_required
 def crear_estudiante2(request):
     try:
         nombre = request.POST['nombre']
@@ -134,6 +149,7 @@ def crear_estudiante2(request):
         return render(request,'app/lista_estudiantes.html')
 
 
+@login_required
 def crear_votacion(request):
     return render(request, 'app/crear_votacion.html')
 
@@ -171,18 +187,26 @@ def crear_votacion2(request):
         veri=True
         return render(request,'app/listade-votaciones.html')
 
+
+@login_required
 def est(request):
     return render(request, 'app/est.html')
 
+
+@login_required
 def hacer_votacion(request):
     return render(request, 'app/hacer_votacion.html')
 
+
+@login_required
 def hacervotacion_facultad(request):
     return render(request, 'app/hacervotación_facultad.html')
 
 def ingresar(request):
     return render(request, 'app/ingresar.html')
 
+
+@login_required
 def lista_estudiantes(request):
     # id_usuario=request.user.id
     # idd = Decano.objects.get(facultad_id=id_usuario)
@@ -195,6 +219,8 @@ def lista_estudiantes(request):
 
     return render(request, 'app/lista_estudiantes.html',contexto)
 
+
+@login_required
 def listade_votaciones_est(request):
     lista22 = Votacion.objects.all()
    #tipo=Votacion.objects.get(tipo_id=2)
@@ -205,22 +231,32 @@ def listade_votaciones_est(request):
     }
     return render(request, 'app/listade-votaciones-est.html',contexto)
 
+
+@login_required
 def listade_votaciones(request):
 
     lista2 = Votacion.objects.all()
-    print(lista2)
+    tipomostrar=TipoVotacion.objects.all()
+
+    print(lista2)       
     contexto ={
         'listade_votaciones':lista2,
+        'listade_votaciones2':tipomostrar,
     }
 
     return render(request, 'app/listade-votaciones.html',contexto)
 
+@login_required
 def listadecandidatos_vot(request):
     return render(request, 'app/listadecandidatos-vot.html')
 
+
+@login_required
 def menu_estudiante(request):
     return render(request, 'app/menu_estudiante.html')
 
+
+@login_required
 def postularestudiante(request):
     lista3 = Votacion.objects.all()
     lista4 = User.objects.all()
@@ -233,6 +269,8 @@ def postularestudiante(request):
 
     return render(request, 'app/postularestudiante.html',contexto1)
 
+
+@login_required
 def postularestudiante2(request):
    # try: 
         nom = request.POST.get['nombres',False]
@@ -251,8 +289,9 @@ def postularestudiante2(request):
     #     print(e)
     #     veri=True
     # return render(request,'app/postularestudiante.html')
-    
 
+
+@login_required
 def postularse(request):
     listav= Votacion.objects.all()
     print(listav)
@@ -261,6 +300,7 @@ def postularse(request):
     }
     return render(request,'app/postularse.html',contexto)
 
+@login_required
 def postularse2(request):
     try:
         
@@ -283,21 +323,27 @@ def postularse2(request):
         veri=True
         return render(request,'app/postularse.html')
 
+@login_required
 def resultados_finales(request):
     return render(request, 'app/resultados_finales.html')
 
+@login_required
 def resultadosfinales_estudiantes(request):
     return render(request, 'app/resultadosfinales-estudiantes.html')
 
+@login_required
 def ustedse_postulo(request):
     return render(request, 'app/ustedse-postulo.html')
 
+@login_required
 def vot(request):
     return render(request, 'app/vot.html')
 
+@login_required
 def votacion_creada(request):
     return render(request, 'app/votacion-creada.html')
 
+@login_required
 def voto_realizado(request):
     return render(request, 'app/voto_realizado.html')
 #-------------------------------------------------------------------
@@ -312,11 +358,16 @@ def autenticar(request):
     # Obtiene el usuario
     usuario = authenticate(username=username, password=password)
 
-    # Verifica si el usuario existe en la base de datos 
+    # Verifica si el usuario existe en la base de datos
+    
     if usuario is not None:
         # Inicia la sesión del usuario en el sistema
         login(request, usuario)
-        return redirect('app:menu_decano')
+        if request.user.is_superuser:
+            return redirect('app:menu_decano')
+        else:
+            return redirect('app:menu_estudiante')
+
     else:
         # Retorna un mensaje de error de login no válido
         return render(request, 'app/ingresar.html') 

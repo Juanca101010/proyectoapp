@@ -39,13 +39,14 @@
                             {%for lista2  in listade_votaciones%}
                             <tr class="fila"> 
                               <td>{{lista2.nombre}}</td>
-                              <td>2022-1</td>
+                              <td>2022-1</td> 
                               <td>{{lista2.fechaInicio}}</td>
                               <td>{{lista2.fechaFinal}}</td>
-                              <td>{{lista2.fechaFinal}}</td>
-                              <td>{{lista2.tipo_id}}</td>
+                              {%for tipomostrar  in listade_votaciones2%}
+                              <td>{{tipomostrar.nombre}}</td>
+                              {% endfor%}
                             </tr>
-                            {% endfor %}
+                            {% endfor%}
                           </tbody>
                         </table>
                         <br>
