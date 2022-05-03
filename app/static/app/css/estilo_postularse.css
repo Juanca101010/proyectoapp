@@ -73,7 +73,7 @@
 }
 
 
-.cr{
+#but{
   text-decoration:none;
 font-weight: 600;
 font-size: 25px;
@@ -89,11 +89,7 @@ border-style: solid;
 border-radius:35px;
 
 }
-input {
-    background: #dfdfdfa2;
-    border-radius: 30px;
-    width: 600px; HEIGHT: 200px
-} 
+
 select{
     background: #0433aa86;
     color: white;
@@ -101,3 +97,11 @@ select{
      height: 40px;
      width: 140px;
    }
+
+input{
+  border-width: 3px;
+border-style: solid;
+border-radius:35px;
+height: 20px;
+}
+  

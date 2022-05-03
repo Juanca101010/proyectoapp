@@ -259,7 +259,7 @@ def menu_estudiante(request):
 @login_required
 def postularestudiante(request):
     lista3 = Votacion.objects.all()
-    lista4 = User.objects.all()
+    lista4 = Estudiante.objects.all()
     print(lista3)
     print(lista4)
     contexto1 ={
@@ -272,23 +272,24 @@ def postularestudiante(request):
 
 @login_required
 def postularestudiante2(request):
-   # try: 
-        nom = request.POST.get['nombres',False]
+    try: 
+        nom = request.POST['nombres']
         vot = request.POST['vot']
 
-        c= Candidato.objects.all()
+        semestr = Estudiante.objects.get(id=nom)
 
         c1 = Candidato()
         c1.estudiante = nom
-        c1.votacion = vot 
+        c1.Votacion = vot
+        c1.semestre =  semestr.semestreActual
 
         c1.save()
 
         return redirect('app:consulta_votacionfacultad')
-    # except Exception as e:
-    #     print(e)
-    #     veri=True
-    # return render(request,'app/postularestudiante.html')
+    except Exception as e:
+        print(e)
+        veri=True
+    return render(request,'app/postularestudiante.html')
 
 
 @login_required
