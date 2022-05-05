@@ -14,23 +14,7 @@ def index(request):
     return HttpResponse('vamos a comerrers')
 
 
-# def categorias(request):
-#     contexto = {
-#         'titulo': 'Blockbuster',
-#         'holabb': 'hola guapoooo',
-#         'categorias': [
-#             {'id': 1, 'nombre': 'die hard'},
-#             {'id': 2, 'nombre': 'lethal weapon'},
-#         ],
-#     }
-#     return render(request, 'app/categorias.html',contexto) #para dibujar la pagina
 
-
-# def categoria(request, id):
-#     numeros = [1, 2, 3]
-#     print(id)
-#     print(numeros)
-#     return HttpResponse(f'Esta es la categoria {id}')
 
 	
 @login_required
@@ -40,18 +24,27 @@ def menu_decano(request):
 @login_required
 def cambiar_estado(request):
     lista3 = Votacion.objects.all()
+    estados = EstadoVotacion.objects.all()
     print(lista3)
+    print(estados)
     contexto ={
         'cambiar_estado':lista3,
+        'cambiar_estados':estados,
     }
+#//////////////////////////////////////////////////////////
+ 
+#//////////////////////////////////////////////////////////////
+
     return render(request, 'app/cambiar_estado.html',contexto)
 
 @login_required
 def cambiar_estado2(request):
     try:
         est = request.POST['estados']
-        est = request.POST['nombres']
-        vo = Votacion()
+        nom = request.POST['nombres']
+        print(nom)
+        print(est)
+        vo = Votacion.objects.get(id=nom)
         vo.estado_id=est
         vo.save()
 
