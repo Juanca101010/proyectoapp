@@ -23,21 +23,7 @@
             <div class="contenido">
                 <br>
                 <h3>Consulta de Votaciones</h2>
-                <br><br>
-                <h3>Elegir Semestre</h3>
-                <select>
-                    <option value="">Semestre</option>
-                    <option value="1">Semestre 1</option>
-                    <option value="1">Semestre 2</option>
-                    <option value="1">Semestre 3</option>
-                    <option value="1">Semestre 4</option>
-                    <option value="1">Semestre 5</option>
-                    <option value="1">Semestre 6</option>
-                    <option value="1">Semestre 7</option>
-                    <option value="1">Semestre 8</option>
-                    <option value="1">Semestre 9</option>
-                    <option value="1">Semestre 10</option>
-                </select>
+                <br>
                 <br><br>
                 <table>
                           <thead>
@@ -60,7 +46,15 @@
                               <td>{{listav.fechaInicio}}</td>
                               <td>{{listav.fechaFinal}}</td>
                               <td>2022-1</td>
-                              <td>{{listav.estado}}</td>
+                              <td>
+                                {%if listav.estado_id is 1%}
+                                Postulacion
+                                {%elif listav.estado_id is 2%}
+                                Votacion
+                                {%else%}
+                                Cerrada
+                                {%endif%}
+                                </td>
                               <td>-</td>
                               <td>-</td>
                               <td>-</td>
@@ -76,7 +70,7 @@
           </div>
               <div class="contenido2">
                 <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>
-              <div class="footer"></div>
+              <!-- <div class="footer"></div> -->
             </div>
 </body>
 </html>

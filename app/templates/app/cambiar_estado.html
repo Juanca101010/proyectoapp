@@ -34,7 +34,7 @@
               </tr>
               </thead>
               <tbody>
-                <form action="{% url 'app:cambiar_estado2' %}" method="post" id="formu">
+                <form action="{% url 'app:cambiar_estado2' %}" method="POST" id="formu">
                   {% csrf_token %}
                   <td>
                     <select>
@@ -46,7 +46,7 @@
                   <td for="estado" id="pos">
                     <select>
                       {%for estados in cambiar_estados%}
-                      <option name="estados" value="{{estados.id}}">{{estados.nombre}}</option>
+                      <option name="estado" value="{{estados.codigo}}">{{estados.nombre}}</option>
                       {% endfor %}
                     </select>
                     <button type="submit">Guardar Cambios</button>

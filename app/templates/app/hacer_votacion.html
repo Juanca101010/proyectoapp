@@ -18,83 +18,28 @@
             </ul>
         </div>
               <div class="contenido">
-                <div class="f2">
-                <h2>Hacer una votación</h2>
-                <br>
-                <h2>Votación Por Semestre</h2>
-                <br>
                 <table>
-                    <thead>
-                      <tr>
-                        <th>Numero de votación</th>
-                        <th>Fecha inicio</th>
-                        <th>Fecha final</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="fila"> 
-                        <td>x</td>
-                        <td>00000000</td>
-                        <td>10/2/2022</td>  
-                        <td>10/2/2022</td>  
-                      </tr>   
-                    </tbody>
-                  </table>
-      <br>
-      <form class="f1">
-       <fieldset>
-          <label for="username">Nombres</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <fieldset>
-          <label for="username">Apellidos</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <select>
-            <option value="">Propuestas</option>
-        <option value="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam similique id nemo accusamus vero ut
-            tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
-        </option>
-        </select>
-        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
-      </form>
-      <br>
-      <form class="f1">
-        <fieldset>
-          <label for="username">Nombres</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <fieldset>
-          <label for="username">Apellidos</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <select>
-            <option value="">Propuestas</option>
-        <option value="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam similique id nemo accusamus vero ut
-            tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
-        </option>
-        </select>
-        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
-      </form>
-      <br>
-      <form class="f1">
-        <fieldset>
-          <label for="username">Nombres</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <fieldset>
-          <label for="username">Apellidos</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <select>
-            <option value="">Propuestas</option>
-        <option value="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam similique id nemo accusamus vero ut
-            tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
-        </option>
-        </select>
-        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
-      </form> 
-    </div>
+                  <thead>
+                    <tr>
+                      <th>Nombre Votacion</th>
+                      <th>Fecha de inicio</th>
+                      <th>Fecha finalización</th>
+                      <th>Candidatos</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {%for lista2  in listade_votaciones%}
+                    <tr class="fila"> 
+                      <td>{{lista2.nombre}}</td>
+                      <td>{{lista2.fechaInicio}}</td>
+                      <td>{{lista2.fechaFinal}}</td>
+                      <td>
+                        <a href="{% url 'app:candidatos-ganadores' %}"class="cr">Consultar</a>
+                      </td> 
+                    </tr>
+                    {% endfor%}
+                  </tbody>
+                </table>
               </div>
               <div class="contenido2">
                 <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>

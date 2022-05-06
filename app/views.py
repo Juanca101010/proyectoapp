@@ -31,27 +31,19 @@ def cambiar_estado(request):
         'cambiar_estado':lista3,
         'cambiar_estados':estados,
     }
-#//////////////////////////////////////////////////////////
- 
-#//////////////////////////////////////////////////////////////
-
     return render(request, 'app/cambiar_estado.html',contexto)
 
 @login_required
 def cambiar_estado2(request):
-    try:
-        est = request.POST['estados']
-        nom = request.POST['nombres']
-        print(nom)
-        print(est)
-        vo = Votacion.objects.get(id=nom)
-        vo.estado_id=est
-        vo.save()
-
-        return redirect('app:cambiar_estado')
-    except Exception as e:
-        print(e)
-        return render(request,'app/cambiar_estado.html')
+    est = int(request.POST['estado'])
+    nom = request.POST['nombres']
+    print(nom)
+    print(est)
+    print('holaaaa')
+    vo = Votacion.objects.get(id=nom)
+    vo.estado_id=est
+    vo.save()
+    return redirect('app:consultar_votacionsemestre')
 
 
 @login_required
@@ -81,7 +73,10 @@ def consult(request):
 
 @login_required
 def consulta_votacionfacultad(request):
-    listaf = Votacion.objects.all()
+    id_usuario=request.user.id
+    facultad_decano=Decano.objects.get(user_id=id_usuario)
+        
+    listaf=Votacion.objects.filter(facultad_id=facultad_decano.id, tipo_id = 1)
 
     print(listaf)
     contexto ={
@@ -91,7 +86,10 @@ def consulta_votacionfacultad(request):
 
 @login_required
 def consultar_votacionsemestre(request):
-    listav = Votacion.objects.all()
+    id_usuario=request.user.id
+    facultad_decano=Decano.objects.get(user_id=id_usuario)
+        
+    listav=Votacion.objects.filter(facultad_id=facultad_decano.id, tipo_id =2)
     print(listav)
     contexto ={
         'consultar_votacionsemestre':listav,
@@ -188,7 +186,16 @@ def est(request):
 
 @login_required
 def hacer_votacion(request):
-    return render(request, 'app/hacer_votacion.html')
+    id_usuario=request.user.id
+    facultad_estudiante=Estudiante.objects.get(user_id=id_usuario)
+        
+    lista2=Votacion.objects.filter(facultad_id=facultad_estudiante.facultad_id, tipo_id =1)
+
+    print(lista2)       
+    contexto ={
+        'listade_votaciones':lista2,
+    }
+    return render(request, 'app/hacer_votacion.html',contexto)
 
 
 @login_required
@@ -201,10 +208,8 @@ def ingresar(request):
 
 @login_required
 def lista_estudiantes(request):
-    # id_usuario=request.user.id
-    # idd = Decano.objects.get(facultad_id=id_usuario)
-    # lista = Estudiante.objects.filter(facultad_id = idd)
-    lista = User.objects.all()
+
+    lista = User.objects.filter(is_superuser=False)
     print(lista)
     contexto ={
         'lista_estudiante':lista,
@@ -229,12 +234,10 @@ def listade_votaciones_est(request):
 def listade_votaciones(request):
 
     lista2 = Votacion.objects.all()
-    tipomostrar=TipoVotacion.objects.all()
 
     print(lista2)       
     contexto ={
         'listade_votaciones':lista2,
-        'listade_votaciones2':tipomostrar,
     }
 
     return render(request, 'app/listade-votaciones.html',contexto)
@@ -252,7 +255,7 @@ def menu_estudiante(request):
 @login_required
 def postularestudiante(request):
     lista3 = Votacion.objects.all()
-    lista4 = Estudiante.objects.all()
+    lista4 = User.objects.filter(is_superuser=False)
     print(lista3)
     print(lista4)
     contexto1 ={
@@ -266,16 +269,15 @@ def postularestudiante(request):
 @login_required
 def postularestudiante2(request):
     try: 
+        c1= Candidato
         nom = request.POST['nombres']
         vot = request.POST['vot']
 
-        semestr = Estudiante.objects.get(id=nom)
+        semestr = Estudiante.objects.get(user_id=nom)
 
-        c1 = Candidato()
         c1.estudiante = nom
         c1.Votacion = vot
         c1.semestre =  semestr.semestreActual
-
         c1.save()
 
         return redirect('app:consulta_votacionfacultad')

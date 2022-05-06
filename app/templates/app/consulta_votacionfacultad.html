@@ -45,7 +45,15 @@
                               <td>{{listaf.fechaInicio}}</td>
                               <td>{{listaf.fechaFinal}}</td>
                               <td>2022-1</td>
-                              <td>{{listaf.estado}}</td>
+                              <td>
+                                {%if listaf.estado_id is 1%}
+                                Postulacion
+                                {%elif listaf.estado_id is 2%}
+                                Votacion
+                                {%else%}
+                                Cerrada
+                                {%endif%}
+                                </td>
                               <td>-</td>
                               <td>-</td>
                               <td>-</td>
@@ -61,7 +69,7 @@
           </div>
               <div class="contenido2">
                 <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>
-              <div class="footer"></div>
+              <!-- <div class="footer"></div> -->
             </div>
 </body>
 </html>

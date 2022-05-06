@@ -42,9 +42,13 @@
                               <td>2022-1</td> 
                               <td>{{lista2.fechaInicio}}</td>
                               <td>{{lista2.fechaFinal}}</td>
-                              {%for tipomostrar  in listade_votaciones2%}
-                              <td>{{tipomostrar.nombre}}</td>
-                              {% endfor%}
+                              <td>
+                                {%if lista2.tipo_id is 1%}
+                                Semestre
+                                {%else%}
+                                Facultad
+                                {%endif%}
+                                </td>
                             </tr>
                             {% endfor%}
                           </tbody>
