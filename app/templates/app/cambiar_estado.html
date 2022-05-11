@@ -37,16 +37,16 @@
                 <form action="{% url 'app:cambiar_estado2' %}" method="POST" id="formu">
                   {% csrf_token %}
                   <td>
-                    <select>
+                    <select name="nombres">
                       {%for lista3 in cambiar_estado%}
-                      <option name="nombres" value="{{lista3.id}}">{{lista3.nombre}}</option>
+                      <option value="{{lista3.id}}">{{lista3.nombre}}</option>
                       {% endfor %}
                     </select>
                   </td>
                   <td for="estado" id="pos">
-                    <select>
+                    <select name="estado">
                       {%for estados in cambiar_estados%}
-                      <option name="estado" value="{{estados.codigo}}">{{estados.nombre}}</option>
+                      <option  value="{{estados.codigo}}">{{estados.nombre}}</option>
                       {% endfor %}
                     </select>
                     <button type="submit">Guardar Cambios</button>

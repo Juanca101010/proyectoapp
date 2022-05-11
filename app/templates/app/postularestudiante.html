@@ -30,9 +30,9 @@
                 <h3>Candidatos a representande de facultad</h3>
                 <br>
                 <br>
-                <select>
+                <select name="nombres">
                     {%for lista4 in p2%}
-                    <option name="nombres" value="{{lista4.id}}">{{lista4.first_name}} {{lista4.last_name}}</option>
+                    <option  value="{{lista4.id}}">{{lista4.first_name}} {{lista4.last_name}}</option>
                     {% endfor %}
                 </select>
                 <!-- <div class="flexsearch">
@@ -45,9 +45,9 @@
             </div> -->
                 <br><br>
                 <h3>Votación</h3>
-                <select>
+                <select name="vot">
                     {%for lista3 in p1%}
-                    <option name="vot" value={{lista3.id}}>{{lista3.nombre}}</option>
+                    <option  value={{lista3.id}}>{{lista3.nombre}}</option>
                     {% endfor %}
                 </select>
                 <br><br>

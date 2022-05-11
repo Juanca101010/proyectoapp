@@ -41,7 +41,9 @@ def cambiar_estado2(request):
     print(est)
     print('holaaaa')
     vo = Votacion.objects.get(id=nom)
-    vo.estado_id=est
+    e= EstadoVotacion.objects.get(id=est)
+    print(vo)
+    vo.estado=e
     vo.save()
     return redirect('app:consultar_votacionsemestre')
 
@@ -268,22 +270,17 @@ def postularestudiante(request):
 
 @login_required
 def postularestudiante2(request):
-    try: 
-        c1= Candidato
-        nom = request.POST['nombres']
-        vot = request.POST['vot']
+    nom = request.POST['nombres']
+    vot = request.POST['vot']
 
-        semestr = Estudiante.objects.get(user_id=nom)
+    c1= Candidato.objects.all()
+    semestr = Estudiante.objects.get(user_id=nom)
+    vot2 = Votacion.objects.get(id=vot)
 
-        c1.estudiante = nom
-        c1.Votacion = vot
-        c1.semestre =  semestr.semestreActual
-        c1.save()
-
-        return redirect('app:consulta_votacionfacultad')
-    except Exception as e:
-        print(e)
-        veri=True
+    c1.estudiante = semestr.id
+    c1.Votacion = vot2
+    c1.semestre =  semestr.semestreActual
+    c1.save()
     return render(request,'app/postularestudiante.html')
 
 
