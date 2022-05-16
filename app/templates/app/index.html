@@ -15,15 +15,15 @@
 
       <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">  
 
-      <form action="{% url 'app:autenticar' %}" method="post">
-        {% csrf_token %}
+      <form  method="post">
+        #{% csrf_token %}
         <span>Usuario:</span>
         <input type="text" name="username">
         <br>
         <span>Password:</span>
         <input type="password" name="password">
         <br>
-        <button type="submit">Ingresar</button>
+        <a href="{% url 'app:ingresar' %}"><button id="Cr"><h2>Ingresar</h1></button></a>
         </form>
         
 

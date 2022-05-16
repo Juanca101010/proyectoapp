@@ -206,6 +206,8 @@ def hacervotacion_facultad(request):
 
 def ingresar(request):
     return render(request, 'app/ingresar.html')
+def index(request):
+    return render(request, 'app/index.html')
 
 
 @login_required
