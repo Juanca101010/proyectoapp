@@ -1,5 +1,3 @@
-from msilib.schema import RadioButton
-from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
@@ -12,9 +10,6 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     return HttpResponse('vamos a comerrers')
-
-
-
 
 	
 @login_required
