@@ -33,67 +33,23 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {%for v in votaciones%}
                             <tr class="fila"> 
-                              <td></td>
+                              <td>{{v.nombre}}</td>
                               <td for="estado" id="pos">
-                                  
+                                  2022-1
                               </td>  
                               <td for="estado"id="vot">
-                                  
+                                  {{v.fechaInicio}}
                               </td>  
                               <td for="estado" id="cerrada">
-                                  
+                                  {{v.fechaFinal}}
                               </td>  
                               <td for="estado" id="cerrada">
-                                <a href="{% url 'app:consult-candidatos-es' %}"  class="cr">Consultar</a>
+                                <a href="{% url 'app:consult-candidatos-es' v.id%}"  class="cr">Consultar</a>
                               </td>   
                             </tr>
-                            <tr class="fila"> 
-                              <td></td>
-                              <td for="estado" id="pos">
-                                  
-                              </td>  
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                <a href="{% url 'app:consult-candidatos-es' %}"  class="cr">Consultar</a>
-                              </td>   
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td>
-                              <td for="estado" id="pos">
-                                  
-                              </td>  
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                <a href="{% url 'app:consult-candidatos-es' %}"  class="cr">Consultar</a>
-                              </td>   
-                            </tr>
-                            <tr class="fila"> 
-                              <td></td>
-                              <td for="estado" id="pos">
-                                  
-                              </td>  
-                              <td for="estado"id="vot">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                  
-                              </td>  
-                              <td for="estado" id="cerrada">
-                                <a href="{% url 'app:consult-candidatos-es' %}"  class="cr">Consultar</a>
-                              </td>   
-                            </tr>
-                           
+                            {%endfor%}
                           </tbody>
                         </table>
                         <br>

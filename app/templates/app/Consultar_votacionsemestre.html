@@ -55,11 +55,11 @@
                                 Cerrada
                                 {%endif%}
                                 </td>
-                              <td>-</td>
-                              <td>-</td>
-                              <td>-</td>
+                              <td>{{votos}}</td>
+                              <td>{{listav.votos}}</td>
+                              <td>{{listav.porcentaje}}%</td>
                               <td>
-                                <a href="{% url 'app:candidatos-ganadores' %}"class="cr">Consultar</a>
+                                <a href="{% url 'app:candidatos-ganadores' listav.id %}"class="cr">Consultar</a>
                               </td> 
                             </tr>
                             {% endfor %}   

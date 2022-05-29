@@ -1,0 +1,28 @@
+{% load static %}
+	
+
+<html lang="en">
+<head>
+    <title>{% block titulo %}Usted se ha postulado{% endblock %}</title>
+    <link href="{% static 'app/css/estilo_opciones.css' %}" rel="stylesheet">
+</head>
+<body>
+    
+      <div class="contenedor" >
+        <div class="header">
+          <ul id="menu">
+            <li ><a href="{% url 'app:menu_estudiante' %}">Inicio</a></li>
+            <li><a href="{% url 'app:postularse' %}">Postularse</a></li>
+            <li><a href="{% url 'app:consult-estudiante' %}">Consultas</a></li> 
+            <li><a href="{% url 'app:ingresar' %}" id="profiles">Salir</a></li>
+            </ul>
+        </div>
+            <div class="contenido">
+                <h1>Ha votado exitosamente</h1>
+          </div>
+              <div class="contenido2">
+                <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>
+              <div class="footer"></div>
+            </div>
+</body>
+</html>

@@ -30,12 +30,14 @@
                               <th>Cantidad de votos</th>
                             </tr>
                           </thead>
+                          {%for c in Candidato%}
                           <tbody>
                             <tr class="fila"> 
-                              <td></td> 
-                              <td></td> 
+                              <td>{{c.estudiante.user.first_name}} {{c.estudiante.user.last_name}}</td> 
+                              <td>{{c.cantidadVotos}}</td> 
                             </tr>      
                           </tbody>
+                          {%endfor%}
                         </table>
                         <br>
                         <a href="{% url 'app:consultar_votacionsemestre' %}" class="cr">Atras</a>

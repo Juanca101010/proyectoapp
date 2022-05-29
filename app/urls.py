@@ -7,9 +7,9 @@ urlpatterns = [
     path('menu_decano/', views.menu_decano, name='menu_decano'), 
     path('cambiar_estado/', views.cambiar_estado, name='cambiar_estado'), 
     path('cambiar_estado2/', views.cambiar_estado2, name='cambiar_estado2'), 
-    path('candidatos-ganadores/', views.candidatos_ganadores, name='candidatos-ganadores'), 
+    path('candidatos-ganadores/<int:id_votacion>', views.candidatos_ganadores, name='candidatos-ganadores'), 
     path('candidatos-ganadores2/', views.candidatos_ganadores2, name='candidatos-ganadores2'), 
-    path('consult-candidatos-es/', views.consult_candidatos_es, name='consult-candidatos-es'), 
+    path('consult-candidatos-es/<int:id_votacion>', views.consult_candidatos_es, name='consult-candidatos-es'), 
     path('consult-candidatos/', views.consult_candidatos, name='consult-candidatos'), 
     path('consult-estudiante/', views.consult_estudiante, name='consult-estudiante'), 
     path('consult/', views.consult, name='consult'), 
@@ -38,7 +38,9 @@ urlpatterns = [
     path('resultadosfinales_estudiantes/', views.resultadosfinales_estudiantes, name='resultadosfinales_estudiantes'), 
     path('ustedse-postulo/', views.ustedse_postulo, name='ustedse-postulo'), 
     path('vot/', views.vot, name='vot'), 
+    path('votarEstudiante/<int:id_votacion>/',views.votarEstudiante,name='votarEstudiante'),
     path('votacion-creada/', views.votacion_creada, name='votacion-creada'), 
+    path('votacionExitosa/<int:id_votacion>/<int:id_candidato>', views.votacionExitosa, name='votacionExitosa'), 
     path('voto_realizado/', views.voto_realizado, name='voto_realizado'), 
 
 

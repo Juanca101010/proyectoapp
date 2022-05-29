@@ -34,7 +34,7 @@
                       <td>{{lista2.fechaInicio}}</td>
                       <td>{{lista2.fechaFinal}}</td>
                       <td>
-                        <a href="{% url 'app:candidatos-ganadores' %}"class="cr">Consultar</a>
+                        <a href="{% url 'app:votarEstudiante' lista2.id%}"class="cr">Consultar</a>
                       </td> 
                     </tr>
                     {% endfor%}

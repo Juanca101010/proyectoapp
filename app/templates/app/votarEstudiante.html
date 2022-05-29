@@ -3,43 +3,50 @@
 
 <html lang="en">
 <head>
-    <title>{% block titulo %}Consultar Candidatos{% endblock %}</title>
+    <title>{% block titulo %}Candidatos Ganadores{% endblock %}</title>
     <link href="{% static 'app/css/estilo_consultavotacion.css' %}" rel="stylesheet">
 </head>
 <body>
     
       <div class="contenedor" >
-    
+
         <div class="header">
           <ul id="menu">
-            <li ><a href="{% url 'app:menu_estudiante' %}">Inicio</a></li>
-            <li><a href="{% url 'app:postularse' %}">Postularse</a></li>
-            <li><a href="{% url 'app:consult-estudiante' %}">Consultas</a></li> 
-            <li><a href="{% url 'app:ingresar' %}" id="profiles">Salir</a></li>
-            </ul>
+            <li ><a href="{% url 'app:menu_decano' %}">Inicio</a></li>
+            <li ><a href="{% url 'app:vot' %}">Votaciones</a></li>
+            <li><a href="{% url 'app:est' %}">Estudiantes</a></li>
+            <li><a href="{% url 'app:consult' %}">Consultas</a></li> 
+            <li><a href="{% url 'app:ingresar' %}" >Salir</a></li>
+        </ul>
         </div>
           
             <div class="contenido">
                 <br>
-                <h3>Candidatos Ganadores</h2>
+                <h3>Votar por un estudiante</h2>
                 <table>
                           <thead>
                             <tr>
                               <th>Nombres</th>
                               <th>Cantidad de votos</th>
+                              <th>Votar</th>
                             </tr>
                           </thead>
+                          {%for c in Candidato%}
                           <tbody>
-                            {%for c in Candidato%}
                             <tr class="fila"> 
                               <td>{{c.estudiante.user.first_name}} {{c.estudiante.user.last_name}}</td> 
                               <td>{{c.cantidadVotos}}</td> 
-                            </tr>      
-                            {%endfor%}
+                              <td>
+                                <a href="{% url 'app:votacionExitosa' c.Votacion_id c.id %}">
+                                <button style="height: 20px;width: 100px;">Votar</button>
+                                </a>
+                              </td>
+                            </tr>
                           </tbody>
+                          {%endfor%}
                         </table>
                         <br>
-                        <a href="{% url 'app:resultados_finales' %}"class="cr">Atras</a>
+                        <a href="{% url 'app:consultar_votacionsemestre' %}" class="cr">Atras</a>
           </div>
               <div class="contenido2">
                 <img src="{% static 'app/image/Logotipo_USTA_Colombia.png' %}" alt="logo" width="100">              </div>

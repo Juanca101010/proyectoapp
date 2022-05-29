@@ -84,7 +84,8 @@ class TipoVotacion (models.Model):
 
 class Votacion (models.Model):
     nombre= models.CharField(max_length=45, null=False)
-    tipo= models.ForeignKey(TipoVotacion,
+    tipo= models.ForeignKey(
+        TipoVotacion,
         related_name='tipos_votaciones',
         on_delete=models.PROTECT
     )
@@ -122,6 +123,9 @@ class Candidato (models.Model):
     )
     semestre= models.IntegerField(null=True)
     propuesta=models.CharField(max_length=45, null=True)
+    cantidadVotos=models.IntegerField(
+        null=False,
+    )
 
     def _str_(self):
         return self.estudiante
@@ -139,6 +143,12 @@ class Voto (models.Model):
     candidato=models.ForeignKey(
         Candidato,
         related_name='candidatos',
+        null=False,
+        on_delete=models.PROTECT
+    )
+    votacion=models.ForeignKey(
+        Votacion,
+        related_name='votacion',
         null=False,
         on_delete=models.PROTECT
     )

@@ -34,97 +34,30 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {%for v in votos%}
                     <tr class="fila"> 
-                      <td></td> 
+                      <td>{{v.votacion.nombre}}</td> 
                       <td for="estado"id="vot">
-                          
+                          2022-1
                       </td>  
                       <td for="estado" id="">
-                          
+                          {{v.votacion.fechaInicio}}
                       </td>  
                       <td for="estado" id="">
-                          
+                          {{v.votacion.fechaFinal}}
                       </td>  
                       <td for="estado" id="">
-                        <p>Resultado: <output id="" for=""></output></p>
+                        {%if v.votacion.tipo_id is 1%}
+                        Semestre
+                        {%else%} 
+                        Facultad
+                        {%endif%}
                       </td> 
                       <td for="estado" id="cerrada">
                         <a href="{% url 'app:listadecandidatos-vot' %}" class="cr">Consultar</a>
                       </td>  
                     </tr>
-                    <tr class="fila"> 
-                      <td></td> 
-                      <td for="estado"id="vot">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                        <p>Resultado: <output id="" for=""></output></p>
-                      </td>  
-                      <td for="estado" id="cerrada">
-                        <a href="{% url 'app:listadecandidatos-vot' %}" class="cr">Consultar</a>
-                      </td> 
-                    </tr>
-                    <tr class="fila"> 
-                      <td></td> 
-                      <td for="estado"id="vot">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                        <p>Resultado: <output id="" for=""></output></p>
-                      </td>  
-                      <td for="estado" id="cerrada">
-                        <a href="{% url 'app:listadecandidatos-vot' %}" class="cr">Consultar</a>
-                      </td> 
-                    </tr>
-                    <tr class="fila"> 
-                      <td></td> 
-                      <td for="estado"id="vot">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                        <p>Resultado: <output id="" for=""></output></p>
-                      </td>  
-                      <td for="estado" id="cerrada">
-                        <a href="{% url 'app:listadecandidatos-vot' %}" class="cr">Consultar</a>
-                      </td> 
-                    </tr>
-                    <tr class="fila"> 
-                      <td></td> 
-                      <td for="estado"id="vot">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                          
-                      </td>  
-                      <td for="estado" id="">
-                        <p>Resultado: <output id="" for=""></output></p>
-                      </td> 
-                      <td for="estado" id="cerrada">
-                        <a href="{% url 'app:listadecandidatos-vot' %}" class="cr">Consultar</a>
-                      </td>  
-                    </tr>
-                   
+                    {%endfor%}
                   </tbody>
                 </table>
                 <br><br>

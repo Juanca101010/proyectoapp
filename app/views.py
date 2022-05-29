@@ -1,4 +1,5 @@
-from msilib.schema import RadioButton
+
+from datetime import datetime
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -49,8 +50,12 @@ def cambiar_estado2(request):
 
 
 @login_required
-def candidatos_ganadores(request):
-    return render(request, 'app/candidatos-ganadores.html')
+def candidatos_ganadores(request, id_votacion):
+    c = Candidato.objects.filter(Votacion_id=id_votacion)
+    contexto ={
+        'Candidato':c,
+    }
+    return render(request, 'app/candidatos-ganadores.html',contexto)
 
 
 @login_required
@@ -58,8 +63,12 @@ def candidatos_ganadores2(request):
     return render(request, 'app/candidatos-ganadores2.html')
 
 @login_required
-def consult_candidatos_es(request):
-    return render(request, 'app/consult-candidatos-es.html')
+def consult_candidatos_es(request,id_votacion):
+    c = Candidato.objects.filter(Votacion_id=id_votacion)
+    contexto ={
+        'Candidato':c,
+    }
+    return render(request, 'app/consult-candidatos-es.html',contexto)
 
 @login_required
 def consult_candidatos(request):
@@ -79,10 +88,18 @@ def consulta_votacionfacultad(request):
     facultad_decano=Decano.objects.get(user_id=id_usuario)
         
     listaf=Votacion.objects.filter(facultad_id=facultad_decano.id, tipo_id = 1)
-
-    print(listaf)
+    print("ACA",listaf.count())
+    cantidadEstudiantes = Estudiante.objects.filter(facultad_id=listaf[0].facultad_id).count()
+    print("Estudiantes",cantidadEstudiantes)
+    for v in listaf:
+        print(v)
+        votosVotacion = Voto.objects.filter(votacion_id=v.id).count()
+        print(votosVotacion)
+        setattr(v,"votos",votosVotacion)
+        setattr(v,"porcentaje",100*votosVotacion/cantidadEstudiantes)
     contexto ={
         'consultar_votacionfacultad':listaf,
+        'votos':cantidadEstudiantes,
     }
     return render(request, 'app/consulta_votacionfacultad.html',contexto)
 
@@ -93,14 +110,28 @@ def consultar_votacionsemestre(request):
         
     listav=Votacion.objects.filter(facultad_id=facultad_decano.id, tipo_id =2)
     print(listav)
+    cantidadEstudiantes = Estudiante.objects.filter(facultad_id=listav[0].facultad_id).count()
+    for v in listav:
+        print(v)
+        votosVotacion = Voto.objects.filter(votacion_id=v.id).count()
+        print(votosVotacion)
+        setattr(v,"votos",votosVotacion)
+        setattr(v,"porcentaje",100*votosVotacion/cantidadEstudiantes)
     contexto ={
         'consultar_votacionsemestre':listav,
+        'votos':cantidadEstudiantes,
     }
     return render(request, 'app/consultar_votacionsemestre.html',contexto)
 
 @login_required
 def consultar_mivoto(request):
-    return render(request, 'app/consultar-mivoto.html')
+    id_usuario=request.user.id
+    id_votante = Estudiante.objects.get(user_id=id_usuario).id
+    v = Voto.objects.filter(votante_id=id_votante)
+    contexto ={
+        'votos':v,
+    }
+    return render(request, 'app/consultar-mivoto.html',contexto)
 
 
 @login_required
@@ -155,16 +186,13 @@ def crear_votacion2(request):
         fecha1 = request.POST['fecha']
         fecha22 = request.POST['fecha2']
         fa = request.POST['facultad']
-
-        if fa==1:
-            t= TipoVotacion.objects.get(id=1)
-        else:
+        if fa is "1":
             t= TipoVotacion.objects.get(id=2)
-
+        else:
+            t= TipoVotacion.objects.get(id=1)
         f= Facultad.objects.get(id=1)
-        t= TipoVotacion.objects.get(id=1)
         e= EstadoVotacion.objects.get(id=1)
-
+        print(t.codigo)
         v = Votacion()
         v.nombre = nv
         v.fechaInicio = fecha1
@@ -191,7 +219,7 @@ def hacer_votacion(request):
     id_usuario=request.user.id
     facultad_estudiante=Estudiante.objects.get(user_id=id_usuario)
         
-    lista2=Votacion.objects.filter(facultad_id=facultad_estudiante.facultad_id, tipo_id =1)
+    lista2=Votacion.objects.filter(Q(facultad_id=facultad_estudiante.facultad_id) & Q(tipo_id =1))
 
     print(lista2)       
     contexto ={
@@ -202,7 +230,13 @@ def hacer_votacion(request):
 
 @login_required
 def hacervotacion_facultad(request):
-    return render(request, 'app/hacervotación_facultad.html')
+    v = Votacion.objects.filter(Q(tipo_id=2) & Q(estado_id=2))
+    c = Candidato.objects.filter(Votacion_id=v[0].id)
+    contexto ={
+        'votacion':v,
+        'Candidato':c,
+    }
+    return render(request, 'app/hacervotación_facultad.html',contexto)
 
 def ingresar(request):
     return render(request, 'app/ingresar.html')
@@ -258,7 +292,7 @@ def menu_estudiante(request):
 
 @login_required
 def postularestudiante(request):
-    lista3 = Votacion.objects.all()
+    lista3 = Votacion.objects.filter(Q(tipo_id=2) & Q(estado_id=1))
     lista4 = User.objects.filter(is_superuser=False)
     print(lista3)
     print(lista4)
@@ -275,20 +309,22 @@ def postularestudiante2(request):
     nom = request.POST['nombres']
     vot = request.POST['vot']
 
-    c1= Candidato.objects.all()
+    c1= Candidato()
     semestr = Estudiante.objects.get(user_id=nom)
     vot2 = Votacion.objects.get(id=vot)
 
-    c1.estudiante = semestr.id
+    c1.estudiante = semestr
+    c1.propuesta = "Representante general."
     c1.Votacion = vot2
     c1.semestre =  semestr.semestreActual
+    c1.cantidadVotos = 0
     c1.save()
     return render(request,'app/postularestudiante.html')
 
 
 @login_required
 def postularse(request):
-    listav= Votacion.objects.all()
+    listav= Votacion.objects.filter(Q(estado_id=1) & Q(tipo_id=1))
     print(listav)
     contexto ={
         'postularse':listav,
@@ -303,13 +339,13 @@ def postularse2(request):
         vot = request.POST['vot']
         idest= request.user.id
         idest2= Estudiante.objects.get(user_id=idest)
-        semestrea=Estudiante(id=idest2)
-        
+        semestrea=idest2.semestreActual
         c = Candidato()
         c.propuesta = nv
         c.Votacion_id =vot
         c.estudiante=idest2
         c.semestre=semestrea
+        c.cantidadVotos=0
         c.save()
 
         return redirect('app:ustedse-postulo')
@@ -320,7 +356,11 @@ def postularse2(request):
 
 @login_required
 def resultados_finales(request):
-    return render(request, 'app/resultados_finales.html')
+    v = Votacion.objects.filter(Q(estado_id=2) | Q(estado_id=3))
+    contexto ={
+        'votaciones':v,
+    }
+    return render(request, 'app/resultados_finales.html',contexto)
 
 @login_required
 def resultadosfinales_estudiantes(request):
@@ -333,6 +373,29 @@ def ustedse_postulo(request):
 @login_required
 def vot(request):
     return render(request, 'app/vot.html')
+
+@login_required
+def votarEstudiante(request, id_votacion):
+    c=Candidato.objects.filter(Votacion_id=id_votacion)
+    contexto ={
+        'Candidato':c,
+    }
+    return render(request, 'app/votarEstudiante.html',contexto)
+
+@login_required
+def votacionExitosa(request, id_votacion, id_candidato):
+    id_usuario=request.user.id
+    votante = Estudiante.objects.get(user_id=id_usuario).id
+    candidato = Candidato.objects.get(id=id_candidato)
+    candidato.cantidadVotos = candidato.cantidadVotos + 1
+    candidato.save()
+    voto = Voto()
+    voto.FechaHora = datetime.today()
+    voto.candidato_id = id_candidato
+    voto.votante_id = votante
+    voto.votacion_id = id_votacion
+    voto.save()
+    return render(request, 'app/votacionExitosa.html')
 
 @login_required
 def votacion_creada(request):

@@ -19,7 +19,7 @@
         </div>
               <div class="contenido">
                 <div class="f2">
-                <h2>Hacer una votación</h2>
+                <h2>Realizar una votación</h2>
                 <br>
                 <h2>Votación Por Facultad</h2>
                 <br>
@@ -33,67 +33,37 @@
                     </thead>
                     <tbody>
                       <tr class="fila"> 
-                        <td>x</td>
-                        <td>00000000</td>
-                        <td>10/2/2022</td>  
-                        <td>10/2/2022</td>  
+                        {%for v in votacion%}
+                        <td>{{v.id}}</td>
+                        <td>{{v.fechaInicio}}</td>
+                        <td>{{v.fechaFinal}}</td>  
+                        {%endfor%}
                       </tr>   
                     </tbody>
                   </table>
       <br>
+      {%for c in Candidato%}
       <form class="f1">
        <fieldset>
-          <label for="username">Nombres</label>
+          <label for="username">Nombres: {{c.estudiante.user.first_name}}</label>
           <output type="text" id="username" />
         </fieldset>
         <fieldset>
-          <label for="username">Apellidos</label>
+          <label for="username">Apellidos: {{c.estudiante.user.last_name}}</label>
           <output type="text" id="username" />
         </fieldset>
-        <select>
-            <option value="">Propuestas</option>
-        <option value="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam similique id nemo accusamus vero ut
-            tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
-        </option>
-        </select>
-        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
+        <fieldset>
+        Propuesta: {{c.propuesta}}
+        </fieldset>
+        <fieldset>
+        Cantidad Votos: {{c.cantidadVotos}}
+        </fieldset>
+        <a href="{% url 'app:votacionExitosa' c.Votacion_id c.id %}">
+          <button id="Cr"><h2>Votar</h2></button>
+        </a>
       </form>
       <br>
-      <form class="f1">
-        <fieldset>
-          <label for="username">Nombres</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <fieldset>
-          <label for="username">Apellidos</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <select>
-            <option value="">Propuestas</option>
-        <option value="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam similique id nemo accusamus vero ut
-            tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
-        </option>
-        </select>
-        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
-      </form>
-      <br>
-      <form class="f1">
-        <fieldset>
-          <label for="username">Nombres</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <fieldset>
-          <label for="username">Apellidos</label>
-          <output type="text" id="username" />
-        </fieldset>
-        <select>
-            <option value="">Propuestas</option>
-        <option value="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis nam similique id nemo accusamus vero ut
-            tenetur voluptatum esse, saepe animi quibusdam officiis tempore autem, cum aliquid, repudiandae eaque libero.
-        </option>
-        </select>
-        <a href="{% url 'app:voto_realizado' %}" ><button id="Cr"><h2>Votar</h2></button></a>
-      </form> 
+      {%endfor%}
     </div>
               </div>
               <div class="contenido2">
