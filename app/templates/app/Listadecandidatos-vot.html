@@ -30,21 +30,17 @@
                             </tr>
                           </thead>
                           <tbody>
+                            {%for c in candidatos%}
                             <tr class="fila"> 
-                              <td>pepito</td> 
-                              <td>peres</td> 
-                              <td>si</td> 
-                            </tr>      
-                            <tr class="fila"> 
-                              <td>pepito</td> 
-                              <td>peres</td> 
-                              <td></td> 
-                            </tr>      
-                            <tr class="fila"> 
-                              <td>pepito</td> 
-                              <td>peres</td> 
-                              <td></td> 
-                            </tr>      
+                              <td>{{c.estudiante.user.first_name}}</td> 
+                              <td>{{c.estudiante.user.last_name}}</td> 
+                              <td>
+                                {%if c.id is miVoto%}
+                                Si
+                                {%endif%}
+                              </td> 
+                            </tr>          
+                            {%endfor%}
                           </tbody>
                         </table>
                         <br>
