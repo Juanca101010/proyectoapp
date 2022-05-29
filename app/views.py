@@ -14,9 +14,6 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return HttpResponse('vamos a comerrers')
 
-
-
-
 	
 @login_required
 def menu_decano(request):
@@ -281,8 +278,14 @@ def listade_votaciones(request):
     return render(request, 'app/listade-votaciones.html',contexto)
 
 @login_required
-def listadecandidatos_vot(request):
-    return render(request, 'app/listadecandidatos-vot.html')
+def listadecandidatos_vot(request,id_voto):
+    voto = Voto.objects.get(id=id_voto)
+    c = Candidato.objects.filter(Votacion_id=voto.votacion_id)
+    contexto ={
+        'candidatos':c,
+        'miVoto':voto.candidato_id
+    }
+    return render(request, 'app/listadecandidatos-vot.html',contexto)
 
 
 @login_required
