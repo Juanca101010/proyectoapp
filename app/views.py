@@ -44,7 +44,7 @@ def view_logout(request):
   # Cierra la sesión del usuario
   logout(request)
   # Redirecciona la página de login
-  return redirect('app:Ingresar')
+  return redirect('app:ingresar')
 
 	
 @login_required
