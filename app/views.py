@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return render(request, 'app/ingresar.html')
+    return HttpResponse('hola')
 
 	
 @login_required
@@ -407,8 +407,7 @@ def voto_realizado(request):
     return render(request, 'app/voto_realizado.html')
 #-------------------------------------------------------------------
 
-def form_login(request):
-    return render(request, 'app/ingresar.html')
+
 
 def autenticar(request):
     # Obtiene los datos del formulario de autenticación
