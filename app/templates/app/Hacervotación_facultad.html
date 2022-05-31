@@ -58,9 +58,8 @@
         <fieldset>
         Cantidad Votos: {{c.cantidadVotos}}
         </fieldset>
-        <a href="{% url 'app:votacionExitosa' c.Votacion_id c.id %}">
-          <button id="Cr"><h2>Votar</h2></button>
-        </a>
+         <button id="Cr"><h2><a href="{% url 'app:votacionExitosa' c.Votacion_id c.id %}">Votar</a></h2></button>
+    
       </form>
       <br>
       {%endfor%}
