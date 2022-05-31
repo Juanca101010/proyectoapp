@@ -15,7 +15,7 @@ def index(request):
     return HttpResponse('hola')
 
 def ingresar(request):
-    return render(request, 'app/ingresar.html')
+    return render(request, 'app/Ingresar.html')
 
 
 def autenticar(request):
@@ -33,18 +33,18 @@ def autenticar(request):
         if request.user.is_superuser:
             return redirect('app:menu_decano')
         else:
-            return redirect('app:menu_estudiante')
+            return redirect('app:Menu_estudiante')
 
     else:
         # Retorna un mensaje de error de login no válido
-        return render(request, 'app/ingresar.html') 
+        return render(request, 'app/Ingresar.html') 
 
 
 def view_logout(request):
   # Cierra la sesión del usuario
   logout(request)
   # Redirecciona la página de login
-  return redirect('app:ingresar')
+  return redirect('app:Ingresar')
 
 	
 @login_required
@@ -75,7 +75,7 @@ def cambiar_estado2(request):
     print(vo)
     vo.estado=e
     vo.save()
-    return redirect('app:consultar_votacionsemestre')
+    return redirect('app:Consultar_votacionsemestre')
 
 
 @login_required
@@ -101,11 +101,11 @@ def consult_candidatos_es(request,id_votacion):
 
 @login_required
 def consult_candidatos(request):
-    return render(request, 'app/consult-candidatos.html')
+    return render(request, 'app/Consult-candidatos.html')
 
 @login_required
 def consult_estudiante(request):
-    return render(request, 'app/consult-estudiante.html')
+    return render(request, 'app/Consult-estudiante.html')
 
 @login_required
 def consult(request):
@@ -150,7 +150,7 @@ def consultar_votacionsemestre(request):
         'consultar_votacionsemestre':listav,
         'votos':cantidadEstudiantes,
     }
-    return render(request, 'app/consultar_votacionsemestre.html',contexto)
+    return render(request, 'app/Consultar_votacionsemestre.html',contexto)
 
 @login_required
 def consultar_mivoto(request):
@@ -265,7 +265,7 @@ def hacervotacion_facultad(request):
         'votacion':v,
         'Candidato':c,
     }
-    return render(request, 'app/hacervotación_facultad.html',contexto)
+    return render(request, 'app/Hacervotación_facultad.html',contexto)
 
 
 
@@ -278,7 +278,7 @@ def lista_estudiantes(request):
         'lista_estudiante':lista,
     }
 
-    return render(request, 'app/lista_estudiantes.html',contexto)
+    return render(request, 'app/Lista_estudiantes.html',contexto)
 
 
 @login_required
@@ -290,7 +290,7 @@ def listade_votaciones_est(request):
     contexto ={
         'listade_votaciones2':lista22,
     }
-    return render(request, 'app/listade-votaciones-est.html',contexto)
+    return render(request, 'app/Listade-votaciones-est.html',contexto)
 
 
 @login_required
@@ -313,12 +313,12 @@ def listadecandidatos_vot(request,id_voto):
         'candidatos':c,
         'miVoto':voto.candidato_id
     }
-    return render(request, 'app/listadecandidatos-vot.html',contexto)
+    return render(request, 'app/Listadecandidatos-vot.html',contexto)
 
 
 @login_required
 def menu_estudiante(request):
-    return render(request, 'app/menu_estudiante.html')
+    return render(request, 'app/Menu_estudiante.html')
 
 
 @login_required
@@ -391,7 +391,7 @@ def resultados_finales(request):
     contexto ={
         'votaciones':v,
     }
-    return render(request, 'app/resultados_finales.html',contexto)
+    return render(request, 'app/Resultados_finales.html',contexto)
 
 @login_required
 def resultadosfinales_estudiantes(request):
@@ -399,11 +399,11 @@ def resultadosfinales_estudiantes(request):
 
 @login_required
 def ustedse_postulo(request):
-    return render(request, 'app/ustedse-postulo.html')
+    return render(request, 'app/Ustedse-postulo.html')
 
 @login_required
 def vot(request):
-    return render(request, 'app/vot.html')
+    return render(request, 'app/Vot.html')
 
 @login_required
 def votarEstudiante(request, id_votacion):
