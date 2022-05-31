@@ -24,7 +24,6 @@ urlpatterns = [
     path('hacer_votacion/', views.hacer_votacion, name='hacer_votacion'), 
     path('hacervotacion_facultad/', views.hacervotacion_facultad, name='hacervotacion_facultad'), 
     path('ingresar/', views.ingresar, name='ingresar'), 
-    path('index/', views.index, name='index'), 
     path('lista_estudiantes/', views.lista_estudiantes, name='lista_estudiantes'), 
     path('listade-votaciones-est/', views.listade_votaciones_est, name='listade-votaciones-est'), 
     path('listade-votaciones/', views.listade_votaciones, name='listade-votaciones'), 

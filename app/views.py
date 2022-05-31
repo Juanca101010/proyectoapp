@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return HttpResponse('vamos a comerrers')
+    return render(request, 'app/ingresar.html')
 
 	
 @login_required
@@ -237,8 +237,6 @@ def hacervotacion_facultad(request):
 
 def ingresar(request):
     return render(request, 'app/ingresar.html')
-def index(request):
-    return render(request, 'app/index.html')
 
 
 @login_required
