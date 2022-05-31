@@ -5,6 +5,8 @@ app_name = 'app'
 urlpatterns = [
     path('', views.index, name='index'), 
     path('ingresar', views.ingresar, name='ingresar'), 
+    path('autenticar/', views.autenticar, name='autenticar'),   
+    path('logout/', views.view_logout, name='view_logout'), 
     path('menu_decano/', views.menu_decano, name='menu_decano'), 
     path('cambiar_estado/', views.cambiar_estado, name='cambiar_estado'), 
     path('cambiar_estado2/', views.cambiar_estado2, name='cambiar_estado2'), 
@@ -44,8 +46,6 @@ urlpatterns = [
 
 
     #---------------------------------------------------------------------------------
-    path('autenticar/', views.autenticar, name='autenticar'),   
-    path('logout/', views.view_logout, name='view_logout'), 
 
     #///////////////////////////////////////////////////////////////
     #crear estudiante

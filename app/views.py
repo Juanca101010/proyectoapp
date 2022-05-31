@@ -14,6 +14,38 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return HttpResponse('hola')
 
+def ingresar(request):
+    return render(request, 'app/ingresar.html')
+
+
+def autenticar(request):
+    # Obtiene los datos del formulario de autenticación
+    username = request.POST['username']
+    password = request.POST['password']
+    # Obtiene el usuario
+    usuario = authenticate(username=username, password=password)
+
+    # Verifica si el usuario existe en la base de datos
+    
+    if usuario is not None:
+        # Inicia la sesión del usuario en el sistema
+        login(request, usuario)
+        if request.user.is_superuser:
+            return redirect('app:menu_decano')
+        else:
+            return redirect('app:menu_estudiante')
+
+    else:
+        # Retorna un mensaje de error de login no válido
+        return render(request, 'app/ingresar.html') 
+
+
+def view_logout(request):
+  # Cierra la sesión del usuario
+  logout(request)
+  # Redirecciona la página de login
+  return redirect('app:ingresar')
+
 	
 @login_required
 def menu_decano(request):
@@ -235,8 +267,6 @@ def hacervotacion_facultad(request):
     }
     return render(request, 'app/hacervotación_facultad.html',contexto)
 
-def ingresar(request):
-    return render(request, 'app/ingresar.html')
 
 
 @login_required
@@ -409,33 +439,6 @@ def voto_realizado(request):
 
 
 
-def autenticar(request):
-    # Obtiene los datos del formulario de autenticación
-    username = request.POST['username']
-    password = request.POST['password']
-    # Obtiene el usuario
-    usuario = authenticate(username=username, password=password)
-
-    # Verifica si el usuario existe en la base de datos
-    
-    if usuario is not None:
-        # Inicia la sesión del usuario en el sistema
-        login(request, usuario)
-        if request.user.is_superuser:
-            return redirect('app:menu_decano')
-        else:
-            return redirect('app:menu_estudiante')
-
-    else:
-        # Retorna un mensaje de error de login no válido
-        return render(request, 'app/ingresar.html') 
-
-
-def view_logout(request):
-  # Cierra la sesión del usuario
-  logout(request)
-  # Redirecciona la página de login
-  return redirect('app:ingresar')
 
 
 
