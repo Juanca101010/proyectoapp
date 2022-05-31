@@ -33,7 +33,7 @@ def autenticar(request):
         if request.user.is_superuser:
             return redirect('app:menu_decano')
         else:
-            return redirect('app:Menu_estudiante')
+            return redirect('app:menu_estudiante')
 
     else:
         # Retorna un mensaje de error de login no válido
