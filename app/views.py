@@ -75,7 +75,7 @@ def cambiar_estado2(request):
     print(vo)
     vo.estado=e
     vo.save()
-    return redirect('app:Consultar_votacionsemestre')
+    return redirect('app:consultar_votacionsemestre')
 
 
 @login_required
