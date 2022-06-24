@@ -259,8 +259,8 @@ def hacer_votacion(request):
 
 @login_required
 def hacervotacion_facultad(request):
-    v = Votacion.objects.filter(Q(tipo_id=2) & Q(estado_id=2))
-    c = Candidato.objects.filter(Votacion_id=v[0].id)
+    v = Votacion.objects.filter(Q(tipo_id=2) & Q(estado_id=2))    #llama a la votacion de tipo facultad y de estado votacion unicamente
+    c = Candidato.objects.filter(Votacion_id=v[0].id)             #llama a los nombres de los candidatos que se encuentren aasociados a la votaacion previamente seleccionada
     contexto ={
         'votacion':v,
         'Candidato':c,
@@ -306,9 +306,9 @@ def listade_votaciones(request):
     return render(request, 'app/listade-votaciones.html',contexto)
 
 @login_required
-def listadecandidatos_vot(request,id_voto):
-    voto = Voto.objects.get(id=id_voto)
-    c = Candidato.objects.filter(Votacion_id=voto.votacion_id)
+def listadecandidatos_vot(request,id_voto):  #llamma donde se realiza el voto para el estudiante
+    voto = Voto.objects.get(id=id_voto)                           
+    c = Candidato.objects.filter(Votacion_id=voto.votacion_id)  #indica en que votoacion tiene el mimo votacion id del voto realizado por el estudiente
     contexto ={
         'candidatos':c,
         'miVoto':voto.candidato_id
