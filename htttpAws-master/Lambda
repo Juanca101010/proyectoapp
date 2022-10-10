@@ -1,0 +1,114 @@
+const AWS = require('aws-sdk');
+const ddb = new AWS.DynamoDB.DocumentClient();
+const randomBytes = require('crypto').randomBytes;
+let dataStore;
+
+
+exports.handler = async (event, context, callback) => {
+   
+    const rideId = toUrlString(randomBytes(16));
+    
+   if (event.context['http-method'] === 'DELETE') 
+   {
+      
+      dataStore = undefined;
+      
+   } 
+   
+   else if (event.context['http-method'] === 'GET') 
+  
+   {
+       
+       let params ={
+            TableName: 'ESP_PRUEBA',
+            Limit: 1,
+            ScanIndexForward : false
+            
+       };
+       
+       
+       
+   await ddb.scan(params, function(err, data){
+        if(err){
+            callback(err, null);
+        }else{
+            callback(null, data);
+        }
+    }).promise();
+    
+   } 
+   
+   else if (event.context['http-method'] === 'POST') 
+   
+   {
+      
+      
+   dataStore = event['body-json'];
+    
+    await recordEsp(rideId).then(() => {
+ 
+        callback(null, {
+            statusCode: 201,
+            body: JSON.stringify({
+                ESP_ID: rideId,
+                Unicorn: dataStore,
+                UnicornName: 'prueba',
+                Eta: '30 seconds',
+                Rider: 'prueba',
+            }),
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+            },
+        });
+    }).catch((err) => {
+        console.error(err);
+
+        errorResponse(err.message, context.awsRequestId, callback)
+    });
+  
+      
+   } 
+   
+   else if (event.context['http-method'] === 'PUT')
+   {
+      
+      this.dataStore = event['body-json'];
+      
+   }
+  
+};
+
+
+function recordEsp(rideId, username, unicorn) {
+    return ddb.put({
+        TableName: 'ESP_PRUEBA',
+        Item: {
+                ESP_ID: rideId,
+                Unicorn: dataStore,
+                UnicornName: 'prueba',
+                Eta: '30 seconds',
+                Rider: 'prueba',
+            RequestTime: new Date().toISOString(),
+        },
+    }).promise();
+}
+
+function toUrlString(buffer) {
+    return buffer.toString('base64')
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=/g, '');
+}
+
+function errorResponse(errorMessage, awsRequestId, callback) {
+  callback(null, {
+    statusCode: 500,
+    body: JSON.stringify({
+      Error: errorMessage,
+      Reference: awsRequestId,
+    }),
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
+  });
+}
